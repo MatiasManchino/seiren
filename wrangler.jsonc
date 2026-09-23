@@ -1,0 +1,17 @@
+// Configuracion de Cloudflare Workers para el sitio.
+// Cloudflare la usa cada vez que construye desde GitHub. Si este archivo no
+// esta, arma uno solo con la carpeta entera como sitio publico, .git incluido.
+// Lo que no se publica esta en .assetsignore; las cabeceras de seguridad, en
+// _headers. "name" tiene que coincidir con el nombre del Worker en Cloudflare.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "seirenkenpo",
+  "compatibility_date": "2026-09-21",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": ".",
+    "not_found_handling": "404-page"
+  }
+}
