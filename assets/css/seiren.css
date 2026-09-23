@@ -257,6 +257,7 @@ p:last-child { margin-bottom: 0; }
 
 .nav { display: flex; align-items: center; gap: 0.25rem; }
 .nav a {
+  white-space: nowrap;
   font-family: var(--display);
   font-size: var(--t-xs);
   font-weight: 600;
@@ -327,10 +328,21 @@ p:last-child { margin-bottom: 0; }
   pointer-events: none;
 }
 .portada__fondo img {
+  /* En pantalla ancha la imagen se ajusta al ANCHO, no al alto. Si llenara
+     el alto, se agrandaria tanto que el loto y la silueta caerian debajo
+     del parrafo. Ajustada al ancho, la mitad izquierda de la imagen (que es
+     negra) queda bajo el texto y todo lo que importa, a la derecha. */
+  position: absolute;
+  right: 0;
+  top: 50%;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 76% center;   /* el loto y la silueta viven a la derecha */
+  min-width: 68rem;          /* en tablet no se achica de mas: se corta a la izquierda */
+  height: auto;
+  transform: translateY(-50%);
+  /* Arriba y abajo se funde con el negro de la portada: sin esto se veria
+     el borde recto donde el humo toca el limite de la foto. */
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 16%, #000 84%, transparent 100%);
+          mask-image: linear-gradient(180deg, transparent 0, #000 16%, #000 84%, transparent 100%);
 }
 .portada__velo {
   position: absolute;
@@ -345,6 +357,22 @@ p:last-child { margin-bottom: 0; }
       rgba(11, 11, 12, 0.10) 100%),
     linear-gradient(0deg, var(--tinta) 0%, rgba(11, 11, 12, 0) 30%);
 }
+/* Entre telefono y escritorio la foto no alcanza a correrse del todo a la
+   derecha: el velo lateral se estira para que el final del parrafo siga
+   cayendo sobre oscuro. */
+@media (min-width: 48.01rem) and (max-width: 75rem) {
+  .portada__velo {
+    background:
+      linear-gradient(90deg,
+        var(--tinta) 0%,
+        rgba(11, 11, 12, 0.93) 42%,
+        rgba(11, 11, 12, 0.78) 62%,
+        rgba(11, 11, 12, 0.20) 82%,
+        rgba(11, 11, 12, 0.05) 100%),
+      linear-gradient(0deg, var(--tinta) 0%, rgba(11, 11, 12, 0) 30%);
+  }
+}
+
 /* En pantalla angosta el texto ocupa todo el ancho, asi que el velo deja de
    ser lateral y pasa a ser vertical. */
 @media (max-width: 48rem) {
@@ -356,7 +384,20 @@ p:last-child { margin-bottom: 0; }
         rgba(11, 11, 12, 0.35) 78%,
         var(--tinta) 100%);
   }
-  .portada__fondo img { object-position: 70% center; }
+  /* En telefono vuelve a llenar la portada entera: la version chica es la
+     mitad derecha de la imagen, y 清蓮拳法 quedan detras del texto como una
+     marca de agua, oscurecidos por el velo. */
+  .portada__fondo img {
+    top: 0;
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    transform: none;
+    object-fit: cover;
+    object-position: right center;
+    -webkit-mask-image: none;
+            mask-image: none;
+  }
 }
 
 .portada__enso {
@@ -743,7 +784,10 @@ p:last-child { margin-bottom: 0; }
 }
 
 /* ---------- Móvil ---------- */
-@media (max-width: 62rem) {
+/* El menu pasa a hamburguesa por debajo de 68rem (1088 px). Con el corte
+   en 62rem, a 1024 px los siete enlaces no entraban en una linea y
+   "La Escuela" y "El Estilo" se partian en dos renglones. */
+@media (max-width: 68rem) {
   .menu-boton { display: block; }
   .nav {
     position: fixed;

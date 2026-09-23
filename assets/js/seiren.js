@@ -47,7 +47,7 @@
     });
 
     window.addEventListener('resize', function () {
-      if (window.innerWidth > 992) pintarMenu(false);
+      if (window.innerWidth > 1088) pintarMenu(false);   // mismo corte que el CSS: 68rem
     }, { passive: true });
   }
 
