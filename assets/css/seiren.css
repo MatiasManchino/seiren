@@ -1,0 +1,1111 @@
+/* =====================================================================
+   SEIREN KENPO — hoja de estilos
+   ---------------------------------------------------------------------
+   Sistema de diseño construido sobre el manual de marca:
+     rojo sangre #B31F24 (Pantone 186 C) · negro · blanco · Montserrat
+
+   Criterio: el rojo se usa como bisturí, no como fondo. Las secciones
+   alternan negro tinta y papel claro, y ese contraste es la estructura.
+   El motivo gráfico es el trazo de pincel del ensō que ya vive en el
+   emblema, no la fotografía.
+   ===================================================================== */
+
+/* ---------- Tokens ---------- */
+:root {
+  /* Marca */
+  --rojo:        #B31F24;
+  --rojo-hondo:  #7E1418;
+  --rojo-tenue:  rgba(179, 31, 36, 0.12);
+
+  /* Neutros con leve sesgo frío, para que el rojo cante */
+  --tinta:       #0B0B0C;
+  --tinta-suave: #16161A;
+  --tinta-borde: #26262C;
+  --humo:        #8C8C94;
+  --papel:       #F6F4F1;
+  --papel-hondo: #E8E4DE;
+  --papel-borde: #D4CFC7;
+
+  /* Tipografía */
+  --display: "Montserrat", "Segoe UI", Helvetica, Arial, sans-serif;
+  --texto:   "Source Serif 4", Georgia, "Times New Roman", serif;
+
+  /* Escala tipográfica */
+  --t-xs:   0.8125rem;
+  --t-sm:   0.9375rem;
+  --t-base: 1.0625rem;
+  --t-lg:   1.25rem;
+  --t-xl:   1.5rem;
+  --t-2xl:  clamp(1.75rem, 3.2vw, 2.5rem);
+  --t-3xl:  clamp(2.25rem, 5.5vw, 4rem);
+
+  /* Ritmo.
+     El margen lateral es un token aparte y se aplica como PADDING, no
+     restandolo del ancho: asi el texto nunca toca el borde de la pantalla
+     aunque el contenedor deje de estar centrado. */
+  --margen:  clamp(1.25rem, 4vw, 2.5rem);
+  --ancho:   72rem;
+  --angosto: 42rem;
+  --aire:    clamp(4rem, 9vw, 8rem);
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--tinta);
+  color: var(--papel);
+  font-family: var(--texto);
+  font-size: var(--t-base);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* height:auto no es decorativo: sin el, el atributo height="..." del HTML
+   queda como alto fijo en px, la imagen se deforma y aspect-ratio deja de
+   tener efecto porque ya no hay ninguna dimension en auto. */
+img, picture, svg { max-width: 100%; height: auto; display: block; }
+
+a { color: inherit; }
+
+::selection { background: var(--rojo); color: #fff; }
+
+/* Foco visible en todo el sitio. Se define una vez y no se toca. */
+:focus-visible {
+  outline: 3px solid var(--rojo);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.seccion--papel :focus-visible { outline-color: var(--rojo-hondo); }
+
+/* ---------- Utilidades ---------- */
+.contenedor {
+  width: 100%;
+  max-width: calc(var(--ancho) + var(--margen) * 2);
+  margin-inline: auto;
+  padding-inline: var(--margen);
+}
+/* Modificador: la misma caja, mas angosta. Conserva el margen lateral. */
+.contenedor.angosto { max-width: calc(var(--angosto) + var(--margen) * 2); }
+/* Si va anidado dentro de un contenedor, el margen ya lo puso el padre. */
+.contenedor .angosto { max-width: var(--angosto); padding-inline: 0; }
+
+.solo-lectores {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+.saltar {
+  position: absolute; left: -9999px; top: 0; z-index: 200;
+  background: var(--rojo); color: #fff;
+  padding: 0.9rem 1.4rem;
+  font-family: var(--display); font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  font-size: var(--t-sm); text-decoration: none;
+}
+.saltar:focus { left: 0; }
+
+/* ---------- Tipografía ---------- */
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+  margin: 0 0 0.6em;
+}
+h1 { font-size: var(--t-3xl); }
+h2 { font-size: var(--t-2xl); }
+h3 { font-size: var(--t-xl); }
+
+p { margin: 0 0 1.2em; }
+p:last-child { margin-bottom: 0; }
+
+/* El "antetítulo": etiqueta corta en versalitas sobre cada sección.
+   Es la voz institucional de la marca, tomada del manual. */
+.antetitulo {
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--rojo);
+  margin: 0 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.antetitulo::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: currentColor;
+  opacity: 0.35;
+}
+
+.bajada {
+  font-size: var(--t-lg);
+  line-height: 1.6;
+  color: var(--humo);
+  max-width: 54ch;
+}
+.seccion--papel .bajada { color: #55525C; }
+
+/* Kanji decorativo, marca de agua del estilo */
+.kanji {
+  font-size: clamp(5rem, 16vw, 13rem);
+  line-height: 1;
+  color: var(--rojo);
+  opacity: 0.09;
+  position: absolute;
+  user-select: none;
+  pointer-events: none;
+  font-family: "Noto Serif JP", var(--texto);
+}
+
+/* ---------- Secciones ---------- */
+.seccion {
+  padding-block: var(--aire);
+  position: relative;
+  overflow: hidden;
+}
+.seccion--papel {
+  background: var(--papel);
+  color: var(--tinta);
+}
+.seccion--papel .antetitulo { color: var(--rojo-hondo); }
+.seccion--borde { border-top: 1px solid var(--tinta-borde); }
+
+/* ---------- Botones ---------- */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0.85rem 1.8rem;
+  font-family: var(--display);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid transparent;
+  background: var(--rojo);
+  color: #fff;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.boton:hover { background: var(--rojo-hondo); }
+
+.boton--linea {
+  background: transparent;
+  border-color: currentColor;
+  color: inherit;
+}
+.boton--linea:hover {
+  background: var(--rojo);
+  border-color: var(--rojo);
+  color: #fff;
+}
+
+/* ---------- Cabecera y navegación ---------- */
+.cabecera {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(11, 11, 12, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--tinta-borde);
+}
+.cabecera__fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 74px;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+  color: var(--papel);
+}
+.marca img { width: 46px; height: 46px; }
+.marca__texto {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: var(--t-sm);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+.marca__texto span {
+  display: block;
+  font-weight: 500;
+  font-size: 0.6875rem;
+  letter-spacing: 0.3em;
+  color: var(--rojo);
+}
+
+.nav { display: flex; align-items: center; gap: 0.25rem; }
+.nav a {
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.75rem 0.9rem;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--humo);
+  border-bottom: 2px solid transparent;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+.nav a:hover { color: var(--papel); }
+.nav a[aria-current="page"] {
+  color: var(--papel);
+  border-bottom-color: var(--rojo);
+}
+
+/* Botón del menú en móvil. Tres líneas que giran hasta formar una X.
+   El tamaño visual es 44x44, así que no hace falta ampliar el área táctil. */
+.menu-boton {
+  display: none;
+  width: 44px; height: 44px;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--tinta-borde);
+  cursor: pointer;
+  position: relative;
+}
+.menu-boton span {
+  position: absolute;
+  left: 11px;
+  width: 22px; height: 2px;
+  background: var(--papel);
+  transition: transform 260ms ease, opacity 200ms ease;
+}
+.menu-boton span:nth-child(1) { top: 15px; }
+.menu-boton span:nth-child(2) { top: 21px; }
+.menu-boton span:nth-child(3) { top: 27px; }
+.menu-boton[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.menu-boton[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-boton[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ---------- Portada ---------- */
+.portada {
+  position: relative;
+  display: grid;
+  align-items: center;
+  min-height: min(82vh, 760px);
+  padding-block: clamp(3rem, 8vw, 6rem);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 90% at 78% 45%, rgba(179,31,36,0.16), transparent 62%),
+    linear-gradient(160deg, #101014 0%, var(--tinta) 55%, #08080A 100%);
+}
+/* Fondo fotografico de la portada.
+   Va como <img> y no como background-image para poder servir avif y webp:
+   el mismo ahorro que en el resto de las fotos. El velo encima es lo que
+   garantiza el contraste del texto, no la suerte de la imagen. */
+.portada__fondo {
+  position: absolute;
+  /* Sobresale arriba y abajo: la deriva la corre unos treinta pixeles y sin
+     ese margen quedaria una franja vacia en un borde. */
+  inset: -7% 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.portada__fondo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 76% center;   /* el loto y la silueta viven a la derecha */
+}
+.portada__velo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg,
+      var(--tinta) 0%,
+      rgba(11, 11, 12, 0.94) 30%,
+      rgba(11, 11, 12, 0.55) 58%,
+      rgba(11, 11, 12, 0.10) 100%),
+    linear-gradient(0deg, var(--tinta) 0%, rgba(11, 11, 12, 0) 30%);
+}
+/* En pantalla angosta el texto ocupa todo el ancho, asi que el velo deja de
+   ser lateral y pasa a ser vertical. */
+@media (max-width: 48rem) {
+  .portada__velo {
+    background:
+      linear-gradient(180deg,
+        rgba(11, 11, 12, 0.92) 0%,
+        rgba(11, 11, 12, 0.80) 45%,
+        rgba(11, 11, 12, 0.35) 78%,
+        var(--tinta) 100%);
+  }
+  .portada__fondo img { object-position: 70% center; }
+}
+
+.portada__enso {
+  position: absolute;
+  right: -6%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(58vw, 620px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+/* Con foto de fondo el degradado rojo sobra: lo tapa la imagen. */
+.portada--foto { background: var(--tinta); }
+
+.portada__cuerpo { position: relative; z-index: 1; max-width: 46rem; }
+.portada h1 { margin-bottom: 0.4em; }
+.portada h1 .linea2 {
+  display: block;
+  color: var(--rojo);
+}
+.portada__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.2rem;
+}
+
+/* ---------- Rejillas ---------- */
+.rejilla {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+.rejilla--2 { grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); }
+.rejilla--3 { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+
+/* ---------- Ficha (conducción, sedes) ---------- */
+.ficha {
+  border: 1px solid var(--tinta-borde);
+  padding: 2rem;
+  position: relative;
+  background: var(--tinta-suave);
+}
+.seccion--papel .ficha {
+  border-color: var(--papel-borde);
+  background: #fff;
+}
+.ficha__grado {
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rojo);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.ficha h3 { margin-bottom: 0.35em; }
+.ficha__rol {
+  font-family: var(--display);
+  font-size: var(--t-sm);
+  color: var(--humo);
+  letter-spacing: 0.04em;
+}
+.seccion--papel .ficha__rol { color: #6A6771; }
+
+/* ---------- Línea de tiempo del linaje ---------- */
+.linea-tiempo {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+.linea-tiempo::before {
+  content: "";
+  position: absolute;
+  left: 7px; top: 8px; bottom: 8px;
+  width: 1px;
+  background: var(--papel-borde);
+}
+.seccion:not(.seccion--papel) .linea-tiempo::before { background: var(--tinta-borde); }
+
+.hito {
+  position: relative;
+  padding-left: 2.75rem;
+  padding-bottom: 2.5rem;
+}
+.hito:last-child { padding-bottom: 0; }
+.hito::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 7px;
+  width: 15px; height: 15px;
+  border-radius: 50%;
+  background: var(--papel);
+  border: 3px solid var(--rojo);
+}
+.seccion:not(.seccion--papel) .hito::before { background: var(--tinta); }
+
+.hito__año {
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--rojo);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.hito h3 { font-size: var(--t-lg); margin-bottom: 0.3em; }
+
+/* ---------- Galería ---------- */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 0.75rem;
+}
+.galeria a {
+  display: block;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--tinta-suave);
+}
+.galeria img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.06);
+  transition: filter 320ms ease, transform 420ms ease;
+}
+.galeria a:hover img,
+.galeria a:focus-visible img {
+  filter: grayscale(0) contrast(1);
+  transform: scale(1.04);
+}
+@media (prefers-reduced-motion: reduce) {
+  .galeria img { transition: none; }
+  .galeria a:hover img { transform: none; }
+}
+
+/* ---------- Cita ---------- */
+.cita {
+  border-left: 3px solid var(--rojo);
+  padding-left: clamp(1.25rem, 3vw, 2rem);
+  margin: 0;
+  font-size: var(--t-lg);
+  font-style: italic;
+  line-height: 1.6;
+}
+.cita cite {
+  display: block;
+  margin-top: 1rem;
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--humo);
+}
+.seccion--papel .cita cite { color: #6A6771; }
+
+/* ---------- Pie ---------- */
+.pie {
+  background: #070708;
+  border-top: 1px solid var(--tinta-borde);
+  padding-block: clamp(3rem, 6vw, 4.5rem) 2rem;
+  font-size: var(--t-sm);
+}
+.pie__fila {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+.pie h4 {
+  font-size: var(--t-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rojo);
+  margin-bottom: 1rem;
+}
+.pie ul { list-style: none; margin: 0; padding: 0; }
+.pie li { margin-bottom: 0.4rem; }
+.pie a { color: var(--humo); text-decoration: none; }
+.pie a:hover { color: var(--papel); text-decoration: underline; text-underline-offset: 3px; }
+
+.redes { display: flex; gap: 0.5rem; }
+.redes a {
+  width: 44px; height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--tinta-borde);
+  color: var(--humo);
+  transition: color 180ms ease, border-color 180ms ease;
+}
+.redes a:hover { color: var(--rojo); border-color: var(--rojo); }
+.redes svg { width: 20px; height: 20px; fill: currentColor; }
+
+.pie__legal {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--tinta-borde);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+  justify-content: space-between;
+  color: #5E5E66;
+  font-size: var(--t-xs);
+}
+
+/* =====================================================================
+   MOVIMIENTO
+   ---------------------------------------------------------------------
+   Tres reglas que no se negocian:
+   1. Todo arranca VISIBLE. Lo que oculta es la clase .js, que pone el
+      propio script: si el JavaScript no corre, no se esconde nada.
+   2. Nada se mueve solo. Cada desplazamiento esta atado al scroll o a
+      una entrada en pantalla, asi que el usuario siempre lo controla
+      (WCAG 2.2.2: no hay contenido en movimiento que haya que pausar).
+   3. prefers-reduced-motion apaga todo de una sola vez, al final.
+   ===================================================================== */
+
+/* ---------- Revelado al entrar en pantalla ---------- */
+.js .revela {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity   700ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    clip-path 900ms cubic-bezier(0.65, 0, 0.35, 1);
+  transition-delay: calc(var(--r, 0) * 90ms);
+  will-change: opacity, transform;
+}
+.js .revela.visible { opacity: 1; transform: none; }
+
+/* Variantes: de donde entra cada cosa. Sirven para que una fila de
+   elementos no entre toda igual y el ojo tenga por donde recorrerla. */
+.js .revela--izq    { transform: translateX(-32px); }
+.js .revela--der    { transform: translateX(32px); }
+.js .revela--escala { transform: scale(0.94); }
+
+/* Cortina: la imagen se descubre de izquierda a derecha, como un trazo.
+   No mueve la foto, la va dejando ver.
+
+   El recorte va en el marco de adentro, nunca en el elemento que observa
+   el IntersectionObserver: un elemento recortado a cero ancho tiene area
+   de interseccion cero, no "entra" nunca en pantalla y se queda invisible
+   para siempre. Costo de aprender esto: una tarde. */
+.js .revela--cortina { opacity: 1; transform: none; }
+.js .revela--cortina .retrato__marco {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 900ms cubic-bezier(0.65, 0, 0.35, 1);
+  transition-delay: calc(var(--r, 0) * 90ms);
+}
+.js .revela--cortina.visible .retrato__marco { clip-path: inset(0 0 0 0); }
+
+/* ---------- Deriva (paralaje) ----------
+   El JS escribe --desliz con un valor en px segun el scroll. Se aplica
+   solo a elementos decorativos: si el calculo falla, no se mueve nada
+   y no se rompe ninguna lectura. */
+.deriva { transform: translate3d(0, var(--desliz, 0px), 0); will-change: transform; }
+.portada__enso.deriva {
+  transform: translateY(-50%) translate3d(0, var(--desliz, 0px), 0) rotate(var(--giro, 0deg));
+}
+
+/* ---------- Entrada de la portada ----------
+   Una sola vez, al cargar. El texto sube escalonado y el enso crece. */
+.js .portada h1,
+.js .portada .antetitulo,
+.js .portada .bajada,
+.js .portada .portada__acciones {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 850ms ease, transform 850ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.js .portada .antetitulo      { transition-delay:  60ms; }
+.js .portada h1               { transition-delay: 160ms; }
+.js .portada .bajada          { transition-delay: 300ms; }
+.js .portada .portada__acciones { transition-delay: 420ms; }
+.js .portada.entrada h1,
+.js .portada.entrada .antetitulo,
+.js .portada.entrada .bajada,
+.js .portada.entrada .portada__acciones { opacity: 1; transform: none; }
+
+.js .portada__enso {
+  opacity: 0;
+  transition: opacity 1600ms ease 200ms;
+}
+.js .portada.entrada .portada__enso { opacity: 0.5; }
+
+/* ---------- Cabecera que se compacta ---------- */
+.cabecera__fila { transition: min-height 260ms ease; }
+.marca img      { transition: width 260ms ease, height 260ms ease; }
+.cabecera--compacta .cabecera__fila { min-height: 58px; }
+.cabecera--compacta .marca img      { width: 36px; height: 36px; }
+
+/* Barra de avance de lectura, pegada al borde inferior de la cabecera. */
+.cabecera__avance {
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  background: var(--rojo);
+  transform: scaleX(var(--avance, 0));
+  transform-origin: 0 50%;
+  transition: transform 90ms linear;
+  pointer-events: none;
+}
+
+/* ---------- Cinta ----------
+   Tira de palabras que se corre en horizontal SEGUN EL SCROLL. No es un
+   marquee automatico: si la pagina esta quieta, la cinta esta quieta. */
+.cinta {
+  overflow: hidden;
+  border-block: 1px solid var(--tinta-borde);
+  padding-block: clamp(1.1rem, 2.5vw, 1.8rem);
+  user-select: none;
+}
+.seccion--papel .cinta { border-block-color: var(--papel-borde); }
+.cinta__pista {
+  display: flex;
+  gap: 2.5rem;
+  width: max-content;
+  transform: translate3d(var(--corrimiento, 0px), 0, 0);
+  will-change: transform;
+}
+.cinta__pista span {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4.5vw, 3rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--tinta-borde);
+  white-space: nowrap;
+}
+.seccion--papel .cinta__pista span { color: var(--papel-borde); }
+
+/* Las palabras van en contorno. Si el navegador no sabe dibujar contorno de
+   texto, se quedan en relleno gris: se leen igual, solo pierden el gesto. */
+@supports (-webkit-text-stroke: 1px red) {
+  .cinta__pista span {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--tinta-borde);
+  }
+  .seccion--papel .cinta__pista span { -webkit-text-stroke-color: var(--papel-borde); }
+}
+
+/* Marcada: la palabra que sí importa, en rojo macizo. La elige quien
+   escribe el contenido, no un nth-child. */
+.cinta__pista span.marcada {
+  color: var(--rojo);
+  -webkit-text-stroke: 0;
+}
+
+/* Kanji: no van en versalitas ni llevan interletra de titular. */
+.cinta__pista span.jp {
+  font-family: "Noto Serif JP", var(--texto);
+  text-transform: none;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+/* Cinta doble: dos pistas que se cruzan en sentidos opuestos. El cruce es
+   lo que se ve; una sola pista parece un cartel, dos parecen movimiento. */
+.cinta--doble .cinta__pista + .cinta__pista { margin-top: 0.15em; }
+.cinta--densa .cinta__pista span { font-size: clamp(1rem, 2.6vw, 1.75rem); }
+.cinta--densa .cinta__pista { gap: 1.75rem; }
+
+/* ---------- Un solo interruptor para apagar todo ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .js .revela,
+  .js .revela--cortina .retrato__marco,
+  .js .portada h1, .js .portada .antetitulo,
+  .js .portada .bajada, .js .portada .portada__acciones {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    transition: none !important;
+  }
+  .js .portada__enso { opacity: 0.5; transition: none; }
+  .deriva, .portada__enso.deriva { transform: translateY(0); }
+  .portada__enso.deriva { transform: translateY(-50%); }
+  .cinta__pista { transform: none; }
+  .cabecera__fila, .marca img { transition: none; }
+}
+
+/* ---------- Móvil ---------- */
+@media (max-width: 62rem) {
+  .menu-boton { display: block; }
+  .nav {
+    position: fixed;
+    inset: 74px 0 auto 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--tinta);
+    border-bottom: 1px solid var(--tinta-borde);
+    padding: 0.5rem 1.25rem 1.5rem;
+    transform: translateY(-120%);
+    transition: transform 300ms ease;
+    max-height: calc(100vh - 74px);
+    overflow-y: auto;
+  }
+  .nav[data-abierto="true"] { transform: none; }
+  .nav a {
+    border-bottom: 1px solid var(--tinta-borde);
+    border-left: 3px solid transparent;
+    padding: 1.1rem 0.75rem;
+    font-size: var(--t-sm);
+  }
+  .nav a[aria-current="page"] {
+    border-bottom-color: var(--tinta-borde);
+    border-left-color: var(--rojo);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav { transition: none; }
+  }
+}
+
+@media (max-width: 40rem) {
+  .portada__enso { opacity: 0.3; right: -25%; }
+  .ficha { padding: 1.5rem; }
+}
+
+/* Los enlaces de las listas del pie median 21px de alto: por debajo del
+   minimo de WCAG 2.2 AA (2.5.8) y molestos de tocar en un telefono. */
+.pie li a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding-block: 0.15rem;
+}
+@media (max-width: 40rem) {
+  .pie li a { min-height: 44px; }
+  .pie li { margin-bottom: 0; }
+}
+
+/* =====================================================================
+   COMPONENTES EDITORIALES
+   ===================================================================== */
+
+/* ---------- Lista numerada ----------
+   Reemplaza a las cajas apiladas. El numeral grande en rojo retoma el
+   motivo "01 / 05" que la escuela ya usa en sus carruseles de redes. */
+.numerada { counter-reset: n; margin: 0; padding: 0; list-style: none; }
+
+.numerada > li {
+  counter-increment: n;
+  display: grid;
+  grid-template-columns: minmax(4.5rem, 7rem) 1fr;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  padding-block: clamp(1.75rem, 4vw, 2.75rem);
+  border-top: 1px solid var(--tinta-borde);
+  align-items: start;
+}
+.seccion--papel .numerada > li { border-top-color: var(--papel-borde); }
+.numerada > li:last-child { border-bottom: 1px solid var(--tinta-borde); }
+.seccion--papel .numerada > li:last-child { border-bottom-color: var(--papel-borde); }
+
+.numerada > li::before {
+  content: "0" counter(n);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 0.9;
+  color: var(--rojo);
+  letter-spacing: -0.02em;
+}
+.numerada h3 { margin-bottom: 0.4em; }
+.numerada p { max-width: 58ch; }
+
+@media (max-width: 34rem) {
+  .numerada > li { grid-template-columns: 1fr; gap: 0.5rem; }
+}
+
+/* ---------- Árbol de linaje ----------
+   Tronco vertical que se abre en ramas. Es una lista anidada de verdad,
+   así que un lector de pantalla la recorre como la jerarquía que es. */
+.arbol, .arbol ul { list-style: none; margin: 0; padding: 0; }
+
+.arbol li { position: relative; }
+
+.arbol > li { padding-bottom: 2rem; }
+
+.nodo {
+  position: relative;
+  padding-left: 2.5rem;
+  padding-bottom: 0.35rem;
+}
+.nodo::before {           /* el punto */
+  content: "";
+  position: absolute;
+  left: 0; top: 0.55em;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--papel);
+  border: 3px solid var(--rojo);
+  z-index: 1;
+}
+.seccion:not(.seccion--papel) .nodo::before { background: var(--tinta); }
+
+.nodo::after {            /* el tronco que baja */
+  content: "";
+  position: absolute;
+  left: 6px; top: 1.6em; bottom: -2rem;
+  width: 1px;
+  background: var(--papel-borde);
+}
+.seccion:not(.seccion--papel) .nodo::after { background: var(--tinta-borde); }
+.arbol > li:last-child > .nodo::after,
+.arbol li:last-child > .nodo:last-child::after { display: none; }
+
+/* El nodo central de la escuela se marca con un punto lleno */
+.nodo--eje::before { background: var(--rojo); }
+
+.nodo__rol {
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rojo);
+  display: block;
+  margin-bottom: 0.15rem;
+}
+.nodo__nombre {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: var(--t-lg);
+  line-height: 1.2;
+  margin: 0 0 0.25rem;
+}
+.nodo p { font-size: var(--t-sm); margin: 0; }
+.nodo__sede {
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--humo);
+}
+.seccion--papel .nodo__sede { color: #6A6771; }
+
+/* Las ramas se indentan y arrancan con una guía horizontal */
+.arbol .ramas {
+  margin-left: 2.5rem;
+  padding-top: 0.5rem;
+  display: grid;
+  gap: 1.5rem;
+}
+@media (min-width: 46rem) {
+  .arbol .ramas { grid-template-columns: 1fr 1fr; gap: 2rem 2.5rem; }
+}
+.arbol .ramas > li > .nodo::after { display: none; }
+
+/* ---------- Dato suelto (dirección, horario) ---------- */
+.dato {
+  display: block;
+  font-family: var(--display);
+  font-size: var(--t-sm);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.3rem;
+}
+.dato strong {
+  display: block;
+  font-size: var(--t-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rojo);
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+}
+
+/* ---------- Duo: columna de texto + figura ----------
+   Dos columnas asimetricas. La figura queda pegada mientras el texto
+   sigue subiendo, que es lo que le da movimiento a la lectura larga. */
+.duo {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+@media (min-width: 56rem) {
+  .duo { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
+  /* Tronco: al reves, la columna ancha es la de la derecha. */
+  .duo--tronco { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); }
+  .duo--invertido .duo__texto { order: 2; }
+  .duo__figura { position: sticky; top: 7rem; }
+}
+.duo__texto { max-width: 46rem; }
+
+/* ---------- Retrato ----------
+   Foto con marco corrido en rojo. El marco se dibuja detras y sobresale:
+   el mismo gesto del sello, sin decorar de mas. */
+.retrato { margin: 0; position: relative; }
+.retrato::before {
+  content: "";
+  position: absolute;
+  inset: -0.85rem -0.85rem auto auto;
+  width: 62%;
+  aspect-ratio: 1;
+  border-top: 2px solid var(--rojo);
+  border-right: 2px solid var(--rojo);
+  pointer-events: none;
+}
+.retrato__marco { overflow: hidden; background: var(--tinta-suave); }
+.retrato img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.06);
+  transition: filter 500ms ease, transform 700ms ease;
+}
+.retrato:hover img { filter: grayscale(0.15) contrast(1); transform: scale(1.03); }
+.retrato figcaption {
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  color: var(--humo);
+  margin-top: 0.9rem;
+  border-left: 2px solid var(--rojo);
+  padding-left: 0.75rem;
+}
+.seccion--papel .retrato figcaption { color: #6A6771; }
+.retrato figcaption strong {
+  display: block;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rojo);
+  font-size: 0.75rem;
+  margin-bottom: 0.2rem;
+}
+
+/* ---------- Tira de archivo ----------
+   Fila de fotos chicas que entran escalonadas. Sirve de respiro entre
+   dos bloques de texto largo. */
+.tira {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.6rem;
+}
+.tira figure { margin: 0; }
+.tira img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.06);
+  transition: filter 400ms ease;
+}
+.tira figure:hover img { filter: grayscale(0) contrast(1); }
+@media (prefers-reduced-motion: reduce) {
+  .retrato img, .tira img { transition: none; }
+  .retrato:hover img { transform: none; }
+}
+
+/* ---------- Glosario ----------
+   Cada concepto del sistema con su ideograma al costado, en contorno rojo,
+   igual que las palabras de la cinta. Es una lista de definiciones de
+   verdad, sin cajas: el ideograma hace de titular y el borde superior
+   separa una entrada de la siguiente. */
+.glosario { list-style: none; margin: 0; padding: 0; }
+
+.glosario > li {
+  display: grid;
+  gap: clamp(0.75rem, 3vw, 2.5rem);
+  padding-block: clamp(2rem, 5vw, 3.25rem);
+  border-top: 1px solid var(--tinta-borde);
+  align-items: start;
+}
+.seccion--papel .glosario > li { border-top-color: var(--papel-borde); }
+.glosario > li:last-child { border-bottom: 1px solid var(--tinta-borde); }
+.seccion--papel .glosario > li:last-child { border-bottom-color: var(--papel-borde); }
+
+@media (min-width: 52rem) {
+  .glosario > li { grid-template-columns: minmax(9rem, 15rem) 1fr; }
+}
+
+.glosario__jp {
+  display: block;
+  font-family: "Noto Serif JP", var(--texto);
+  font-size: clamp(2.75rem, 8vw, 5rem);
+  line-height: 0.95;
+  color: var(--rojo);
+}
+@supports (-webkit-text-stroke: 1px red) {
+  .glosario__jp { color: transparent; -webkit-text-stroke: 1.5px var(--rojo); }
+}
+.glosario__ro {
+  display: block;
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--rojo);
+  margin-top: 0.7rem;
+}
+.glosario h3 { margin-bottom: 0.4em; }
+.glosario p  { max-width: 60ch; }
+
+/* Lista de variantes dentro de una entrada (los tipos de golpe, las tres
+   alturas). Guion rojo en vez de punto: no es una enumeracion suelta, es el
+   despliegue de lo que acaba de nombrarse. */
+.glosario__detalle {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  max-width: 62ch;   /* la misma medida que los parrafos: si no, el detalle
+                        corre el doble de ancho que el texto que lo explica */
+}
+.glosario__detalle li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: 0.7rem;
+  font-size: var(--t-sm);
+  line-height: 1.6;
+}
+.glosario__detalle li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.72em;
+  width: 11px; height: 2px;
+  background: var(--rojo);
+}
+.glosario__detalle strong {
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: block;
+}
+
+/* ---------- Numerada con ideograma ----------
+   La misma lista de la portada, pero el marcador es el kanji de la virtud
+   en lugar del numeral. Mismo esqueleto, otra voz. */
+.numerada--kanji > li::before {
+  content: attr(data-jp);
+  font-family: "Noto Serif JP", var(--texto);
+  font-size: clamp(2.25rem, 5.5vw, 3.5rem);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.numerada__ro {
+  display: block;
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rojo);
+  margin-bottom: 0.35rem;
+}

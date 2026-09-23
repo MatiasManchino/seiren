@@ -1,0 +1,35 @@
+/* EQUIPO */
+
+    Desarrollo y diseño: Manchino, Matías P
+    Alias: DevMapachino
+    GitHub: github.com/MatiasManchino
+    Ubicación: Argentina
+
+
+/* ESCUELA */
+
+    Seiren Kenpo — 清蓮拳法
+    Escuela con identidad, organización y conducción propias.
+    Escuela fundadora de la Unión Americana de Kenpo (UAK).
+    Sedes: Mendoza · Salta · Buenos Aires
+
+    Conducción:
+      Maestro Arturo Bales — 7° Dan
+      Maestro Claudio Abdala — 6° Dan
+      Profesor Pablo Miranda Savina — 4° Dan
+      Instructor Fabricio Giuliani — 2° Dan
+
+
+/* SITIO */
+
+    Estándares: HTML5, CSS3, WCAG 2.2 AA
+    Componentes: ninguno. HTML, CSS y JavaScript nativo.
+    Tipografía: Montserrat (marca) + Source Serif 4 (texto)
+    Imágenes: AVIF con respaldo WebP y JPG
+    Paleta: #B31F24 rojo sangre · negro · blanco
+
+
+              ( o.o )
+               > ^ <     DevMapachino
+
+       Si llegaste hasta acá, gracias por mirar el código.

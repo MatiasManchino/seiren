@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<!--
+  ┌────────────────────────────────────────────────────────────┐
+  │   清 蓮 拳 法   ·   SEIREN KENPO                            │
+  │   Practicar · Enseñar · Transmitir                          │
+  │                                                            │
+  │   Desarrollo y diseño                                      │
+  │   Manchino, Matías P  ·  DevMapachino                      │
+  │   github.com/MatiasManchino                                │
+  │                                                            │
+  │   Hecho a mano: HTML, CSS y JavaScript nativo.             │
+  │   Sin framework, sin constructor de páginas.               │
+  │   Más datos en  /humans.txt                                │
+  └────────────────────────────────────────────────────────────┘
+-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>El Estilo — Kenpo, el arte del puño | Seiren Kenpo</title>
+  <meta name="description" content="Cómo se entrena el Kenpo: la guardia (tai kamae), el golpeo de manos (tsuki), el desplazamiento fuera de la línea de ataque (tai sabaki) y el sistema de respiración (kokyu ho). Y los siete principios del bushidō.">
+  <link rel="canonical" href="https://www.seirenkenpo.com.ar/estilo.html">
+
+  <meta name="author" content="Manchino, Matías P — DevMapachino">
+  <meta name="robots" content="index, follow">
+  <link rel="author" href="humans.txt">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Seiren Kenpo">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:url" content="https://www.seirenkenpo.com.ar/estilo.html">
+  <meta property="og:title" content="El Estilo — Kenpo, el arte del puño | Seiren Kenpo">
+  <meta property="og:description" content="Cómo se entrena el Kenpo: la guardia (tai kamae), el golpeo de manos (tsuki), el desplazamiento fuera de la línea de ataque (tai sabaki) y el sistema de respiración (kokyu ho). Y los siete principios del bushidō.">
+  <meta property="og:image" content="https://www.seirenkenpo.com.ar/assets/img/marca/og-portada.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta name="theme-color" content="#0B0B0C">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/marca/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/img/marca/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+  <link rel="stylesheet" href="assets/css/seiren.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsOrganization",
+  "name": "Seiren Kenpo",
+  "alternateName": "清蓮拳法",
+  "description": "Escuela de artes marciales dedicada a la práctica, la enseñanza y la formación. Defensa personal y formación progresiva en Mendoza, Salta y Buenos Aires.",
+  "url": "https://www.seirenkenpo.com.ar/",
+  "logo": "https://www.seirenkenpo.com.ar/assets/img/marca/emblema-512.png",
+  "image": "https://www.seirenkenpo.com.ar/assets/img/marca/og-portada.jpg",
+  "sport": "Artes marciales",
+  "areaServed": {
+    "@type": "Country",
+    "name": "Argentina"
+  },
+  "memberOf": {
+    "@type": "Organization",
+    "name": "Unión Americana de Kenpo (UAK)"
+  },
+  "sameAs": [
+    "https://www.facebook.com/seirenkenpo",
+    "https://www.instagram.com/seirenkenpo/"
+  ]
+}
+  </script>
+</head>
+<body>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="cabecera">
+  <div class="contenedor cabecera__fila">
+    <a class="marca" href="index.html">
+        <picture>
+          <source srcset="assets/img/marca/emblema-128.webp" type="image/webp">
+          <img src="assets/img/marca/emblema-128.png" alt="" width="46" height="46">
+        </picture>
+        <span class="marca__texto">Seiren Kenpo<span>清蓮拳法</span></span>
+      </a>
+
+    <button class="menu-boton" type="button" aria-expanded="false"
+            aria-controls="nav-principal" aria-label="Abrir el menú">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+    </button>
+
+    <nav class="nav" id="nav-principal" aria-label="Navegación principal">
+      <a href="index.html">Inicio</a>
+      <a href="escuela.html">La Escuela</a>
+      <a href="estilo.html" aria-current="page">El Estilo</a>
+      <a href="conduccion.html">Conducción</a>
+      <a href="sedes.html">Sedes</a>
+      <a href="galeria.html">Galería</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </div>
+  <div class="cabecera__avance" aria-hidden="true"></div>
+</header>
+
+<main id="contenido">
+
+  <section class="seccion seccion--borde">
+    <span class="kanji deriva" data-deriva="0.22" aria-hidden="true" style="right:0;top:6%">拳</span>
+    <div class="contenedor">
+      <p class="antetitulo revela">El Estilo</p>
+      <h1 class="revela">Kenpo: el arte del puño</h1>
+      <p class="bajada revela">
+        «Ken» es el puño; «po», el método. Un sistema que explota todos los
+        recursos del cuerpo y elige la eficacia por encima del desgaste.
+      </p>
+    </div>
+  </section>
+
+  <section class="seccion seccion--papel">
+    <div class="contenedor">
+      <div class="duo" style="align-items:center">
+        <div class="duo__texto revela revela--izq">
+          <p class="antetitulo revela">La práctica</p>
+          <h2 class="revela">Qué se entrena</h2>
+          <p>
+            Es un tipo de boxeo que trabaja las distancias media y corta:
+            ataques de puño y de pierna en combinaciones continuas, veloces y
+            encadenadas, con el poder saliendo del giro de cadera y no de la
+            fuerza del brazo.
+          </p>
+          <p>
+            Cada vez que se golpea se está defendiendo. Una mano ataca mientras
+            la otra vuelve cerca del cuerpo, en sentido defensivo. La postura es
+            baja del principio al final, para tener raíz, pero los
+            desplazamientos son rápidos.
+          </p>
+          <p>
+            A eso se suman proyecciones, luxaciones, trabajo de piso y armas
+            tradicionales. La orientación es la defensa personal real: resolver
+            y salir, no sostener un intercambio.
+          </p>
+        </div>
+        <figure class="retrato revela revela--cortina">
+          <div class="retrato__marco">
+            <picture>
+          <source srcset="assets/img/fotos/mend12.avif" type="image/avif">
+          <source srcset="assets/img/fotos/mend12.webp" type="image/webp">
+          <img src="assets/img/fotos/mend12.jpg" alt="Practicantes trabajando una técnica de defensa en el dojo" loading="lazy" decoding="async" style="aspect-ratio:4/3;object-fit:cover">
+        </picture>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  
+  <div class="cinta cinta--doble cinta--densa" aria-hidden="true">
+    <div class="cinta__pista"><span class="jp">構え</span><span>Tai Kamae</span><span class="jp">突き</span><span class="marcada">Tsuki</span><span class="jp">体捌き</span><span>Tai Sabaki</span><span class="jp">呼吸法</span><span>Kokyu Ho</span><span class="jp">構え</span><span>Tai Kamae</span><span class="jp">突き</span><span class="marcada">Tsuki</span><span class="jp">体捌き</span><span>Tai Sabaki</span><span class="jp">呼吸法</span><span>Kokyu Ho</span><span class="jp">構え</span><span>Tai Kamae</span><span class="jp">突き</span><span class="marcada">Tsuki</span><span class="jp">体捌き</span><span>Tai Sabaki</span><span class="jp">呼吸法</span><span>Kokyu Ho</span><span class="jp">構え</span><span>Tai Kamae</span><span class="jp">突き</span><span class="marcada">Tsuki</span><span class="jp">体捌き</span><span>Tai Sabaki</span><span class="jp">呼吸法</span><span>Kokyu Ho</span><span class="jp">構え</span><span>Tai Kamae</span><span class="jp">突き</span><span class="marcada">Tsuki</span><span class="jp">体捌き</span><span>Tai Sabaki</span><span class="jp">呼吸法</span><span>Kokyu Ho</span></div><div class="cinta__pista" data-sentido="inverso"><span class="jp">上段</span><span>Jodan</span><span class="jp">中段</span><span class="marcada">Chudan</span><span class="jp">下段</span><span>Gedan</span><span class="jp">上段</span><span>Jodan</span><span class="jp">中段</span><span class="marcada">Chudan</span><span class="jp">下段</span><span>Gedan</span><span class="jp">上段</span><span>Jodan</span><span class="jp">中段</span><span class="marcada">Chudan</span><span class="jp">下段</span><span>Gedan</span><span class="jp">上段</span><span>Jodan</span><span class="jp">中段</span><span class="marcada">Chudan</span><span class="jp">下段</span><span>Gedan</span><span class="jp">上段</span><span>Jodan</span><span class="jp">中段</span><span class="marcada">Chudan</span><span class="jp">下段</span><span>Gedan</span></div>
+  </div>
+
+  <section class="seccion">
+    <div class="contenedor">
+      <p class="antetitulo revela">El sistema</p>
+      <h2 class="revela">Cuatro cosas que se entrenan siempre</h2>
+      <p class="bajada revela">
+        No son cuatro materias sueltas. Son cuatro caras del mismo trabajo, y
+        aparecen en cada clase desde el primer día.
+      </p>
+
+      <ul class="glosario" data-escalonar="2" style="margin-top:clamp(2.5rem,6vw,4rem)">
+        <li>
+          <div>
+            <span class="glosario__jp" aria-hidden="true">構え</span>
+            <span class="glosario__ro">Tai Kamae</span>
+          </div>
+          <div>
+            <h3>La guardia</h3>
+            <p>
+              Manos y codos defienden y atacan a media y corta distancia. El
+              cuerpo se pone de costado, con una mano más adelantada, para
+              ofrecer el menor blanco posible. Las manos van cerradas en puño o
+              abiertas, según lo que haga falta.
+            </p>
+            <p>Se boxea desde tres alturas, y cada una tiene su guardia:</p>
+            <ul class="glosario__detalle">
+              <li><strong>Jodan · 上段</strong> Por encima de los hombros.</li>
+              <li><strong>Chudan · 中段</strong> De los hombros hasta la cadera.</li>
+              <li><strong>Gedan · 下段</strong> Por debajo de la cadera.</li>
+            </ul>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            <span class="glosario__jp" aria-hidden="true">突き</span>
+            <span class="glosario__ro">Tsuki</span>
+          </div>
+          <div>
+            <h3>El golpeo de manos</h3>
+            <p>
+              El boxeo de manos no es un recurso más: es el eje del combate. La
+              variedad de ángulos, de posiciones de la mano y de tipos de golpe
+              es lo que permite tener siempre una respuesta a mano, en vez de
+              forzar la misma técnica en toda situación.
+            </p>
+            <ul class="glosario__detalle">
+              <li><strong>Puño cerrado</strong> Con los dos primeros nudillos:
+                recto a zona media y alta, circular a la cabeza, ascendente al
+                abdomen. Y el puño reverso.</li>
+              <li><strong>Puño semiabierto</strong> Nudillos medios, dedo medio
+                sobresaliente, punta de dedos: para puntos precisos.</li>
+              <li><strong>Mano abierta</strong> Filo interno o externo, en
+                recto, descendente, ascendente, circular o diagonal.</li>
+              <li><strong>Combinaciones</strong> Filo externo hacia abajo,
+                redondo corto al abdomen bajo, golpe doble de puños, y filo
+                interno seguido de pinza con pulgar e índice.</li>
+            </ul>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            <span class="glosario__jp" aria-hidden="true">体捌き</span>
+            <span class="glosario__ro">Tai Sabaki</span>
+          </div>
+          <div>
+            <h3>Salir de la línea</h3>
+            <p>
+              Tai sabaki es mover el cuerpo fuera de la línea del ataque. Es el
+              primer paso, antes que cualquier respuesta, y hace dos cosas a la
+              vez.
+            </p>
+            <ul class="glosario__detalle">
+              <li><strong>Salir del peligro</strong> Uno queda en una posición
+                ventajosa, con lo cual el contraataque cuesta menos esfuerzo y
+                llega mejor.</li>
+              <li><strong>Romperle el equilibrio</strong> El otro golpeó contra
+                un vacío. El ataque se debilita solo y deja flancos abiertos.</li>
+            </ul>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            <span class="glosario__jp" aria-hidden="true">呼吸法</span>
+            <span class="glosario__ro">Kokyu Ho</span>
+          </div>
+          <div>
+            <h3>La respiración</h3>
+            <p>
+              Se puede estar casi cuarenta días sin comer y casi una semana sin
+              beber, pero muy poco tiempo sin respirar, y menos todavía durante
+              una práctica intensa. Por eso la respiración se entrena como una
+              técnica más.
+            </p>
+            <p>
+              Es diafragmática baja, con tiempos de uno por tres: uno para
+              inhalar, tres para exhalar. La toma de aire es breve; la salida,
+              profunda, prolongada, sin sonido y completamente relajada.
+            </p>
+            <p>
+              En esa exhalación el peso baja y la base se arma. De ahí sale la
+              contradicción que define al estilo: ser sólido en la postura y al
+              mismo tiempo elástico.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="seccion seccion--papel">
+    <div class="contenedor">
+      <p class="antetitulo revela">Principios</p>
+      <h2 class="revela">Cómo se trabaja</h2>
+
+      <ol class="numerada" data-escalonar style="margin-top:2.5rem">
+        <li>
+          <div>
+            <h3>Eficacia antes que fuerza</h3>
+            <p>El estilo prioriza la economía de energía. Una técnica correcta
+               vale más que una repetida con esfuerzo.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>No es un deporte de competencia</h3>
+            <p>No adherimos a competencias. El foco está en el dominio técnico,
+               la disciplina y la confianza que da saber defenderse.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Contacto con criterio</h3>
+            <p>Se trabaja con contacto, pero el objetivo es que nadie salga
+               lastimado. Se evita la confrontación; si aparece, se resuelve rápido.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Salud física y mental</h3>
+            <p>La práctica desarrolla coordinación, flexibilidad y equilibrio, y
+               con el tiempo, seguridad en uno mismo.</p>
+          </div>
+        </li>
+      </ol>
+
+      <blockquote class="cita revela revela--izq" style="margin:clamp(3rem,6vw,4.5rem) 0 0">
+        Entrenar es cuidar la salud. La constancia es entender el esfuerzo que
+        hay detrás de todo. Y el entrenamiento, con el tiempo, da seguridad.
+        <cite>Alumnos de la sede de Mendoza</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  
+  <div class="cinta cinta--doble cinta--densa" aria-hidden="true">
+    <div class="cinta__pista"><span class="jp">義</span><span>Gi</span><span class="jp">礼</span><span>Rei</span><span class="marcada jp">勇</span><span class="marcada">Yu</span><span class="jp">名誉</span><span>Meiyo</span><span class="jp">仁</span><span>Jin</span><span class="jp">誠</span><span>Makoto</span><span class="jp">忠義</span><span>Chuugi</span><span class="jp">義</span><span>Gi</span><span class="jp">礼</span><span>Rei</span><span class="marcada jp">勇</span><span class="marcada">Yu</span><span class="jp">名誉</span><span>Meiyo</span><span class="jp">仁</span><span>Jin</span><span class="jp">誠</span><span>Makoto</span><span class="jp">忠義</span><span>Chuugi</span><span class="jp">義</span><span>Gi</span><span class="jp">礼</span><span>Rei</span><span class="marcada jp">勇</span><span class="marcada">Yu</span><span class="jp">名誉</span><span>Meiyo</span><span class="jp">仁</span><span>Jin</span><span class="jp">誠</span><span>Makoto</span><span class="jp">忠義</span><span>Chuugi</span><span class="jp">義</span><span>Gi</span><span class="jp">礼</span><span>Rei</span><span class="marcada jp">勇</span><span class="marcada">Yu</span><span class="jp">名誉</span><span>Meiyo</span><span class="jp">仁</span><span>Jin</span><span class="jp">誠</span><span>Makoto</span><span class="jp">忠義</span><span>Chuugi</span><span class="jp">義</span><span>Gi</span><span class="jp">礼</span><span>Rei</span><span class="marcada jp">勇</span><span class="marcada">Yu</span><span class="jp">名誉</span><span>Meiyo</span><span class="jp">仁</span><span>Jin</span><span class="jp">誠</span><span>Makoto</span><span class="jp">忠義</span><span>Chuugi</span></div><div class="cinta__pista" data-sentido="inverso"><span>Integridad</span><span>Respeto</span><span class="marcada">Coraje</span><span>Honor</span><span>Compasión</span><span>Honestidad</span><span>Lealtad</span><span>Integridad</span><span>Respeto</span><span class="marcada">Coraje</span><span>Honor</span><span>Compasión</span><span>Honestidad</span><span>Lealtad</span><span>Integridad</span><span>Respeto</span><span class="marcada">Coraje</span><span>Honor</span><span>Compasión</span><span>Honestidad</span><span>Lealtad</span><span>Integridad</span><span>Respeto</span><span class="marcada">Coraje</span><span>Honor</span><span>Compasión</span><span>Honestidad</span><span>Lealtad</span><span>Integridad</span><span>Respeto</span><span class="marcada">Coraje</span><span>Honor</span><span>Compasión</span><span>Honestidad</span><span>Lealtad</span></div>
+  </div>
+
+  <section class="seccion">
+    <span class="kanji deriva" data-deriva="0.2" aria-hidden="true" style="left:-4%;top:6%">武</span>
+    <div class="contenedor">
+      <p class="antetitulo revela">Bushidō · 武士道</p>
+      <h2 class="revela">Los siete principios</h2>
+      <p class="bajada revela">
+        No son una sentencia que uno se repite en la cabeza. Son el marco con el
+        que se mide una conducta, adentro y afuera del dojo.
+      </p>
+
+      <ol class="numerada numerada--kanji" data-escalonar="3" style="margin-top:clamp(2.5rem,6vw,3.5rem)">
+        <li data-jp="義">
+          <div>
+            <span class="numerada__ro">Gi</span>
+            <h3>Integridad</h3>
+            <p>Sé honrado en tu trato con todo el mundo. La justicia que importa
+               no es la que emana de los demás sino la propia, y ahí no hay
+               grises: hay lo correcto y lo incorrecto.</p>
+          </div>
+        </li>
+        <li data-jp="礼">
+          <div>
+            <span class="numerada__ro">Rei</span>
+            <h3>Respeto</h3>
+            <p>No hay motivo para ser cruel ni necesidad de demostrar fuerza. Se
+               es cortés incluso con quien se tiene enfrente. La fuerza interior
+               se vuelve evidente en los momentos difíciles, no en los fáciles.</p>
+          </div>
+        </li>
+        <li data-jp="勇">
+          <div>
+            <span class="numerada__ro">Yu</span>
+            <h3>Coraje</h3>
+            <p>Vivir escondido como una tortuga no es vivir. El coraje es poner
+               el cuerpo ante lo que da miedo: un desafío, una decisión, una
+               conversación que se viene postergando.</p>
+          </div>
+        </li>
+        <li data-jp="名誉">
+          <div>
+            <span class="numerada__ro">Meiyo</span>
+            <h3>Honor</h3>
+            <p>Hay un solo juez del propio honor, y es uno mismo. Las decisiones
+               que se toman, y la forma en que se llevan a cabo, son el reflejo
+               de quién es cada uno realmente.</p>
+          </div>
+        </li>
+        <li data-jp="仁">
+          <div>
+            <span class="numerada__ro">Jin</span>
+            <h3>Compasión</h3>
+            <p>El entrenamiento vuelve a uno rápido y fuerte. Ese poder se usa a
+               favor de los demás. Si la oportunidad de ayudar no aparece, se
+               sale a buscarla.</p>
+          </div>
+        </li>
+        <li data-jp="誠">
+          <div>
+            <span class="numerada__ro">Makoto</span>
+            <h3>Honestidad</h3>
+            <p>Cuando se dice que se va a hacer algo, es como si ya estuviera
+               hecho. No hace falta prometer: hablar y hacer son la misma
+               acción.</p>
+          </div>
+        </li>
+        <li data-jp="忠義">
+          <div>
+            <span class="numerada__ro">Chuugi</span>
+            <h3>Lealtad</h3>
+            <p>Lo que uno hizo o dijo le pertenece, con todas sus consecuencias.
+               Las palabras de una persona son como sus huellas: se pueden
+               seguir a donde vaya.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="seccion seccion--papel">
+    <div class="contenedor">
+      <p class="antetitulo revela">Empezar</p>
+      <h2 class="revela">Preguntas de la primera clase</h2>
+
+      <div class="rejilla rejilla--2" data-escalonar style="margin-top:2.5rem">
+        <article class="ficha">
+          <h3>¿Necesito experiencia previa?</h3>
+          <p>No. El sistema de enseñanza está pensado para un aprendizaje
+             progresivo, sin importar el nivel inicial.</p>
+        </article>
+        <article class="ficha">
+          <h3>¿Qué ropa llevo?</h3>
+          <p>Usamos kenpogi. Si todavía no tenés, ropa cómoda y flexible, en
+             colores sobrios: negro, blanco o gris.</p>
+        </article>
+        <article class="ficha">
+          <h3>¿Hay límite de edad o estado físico?</h3>
+          <p>El Kenpo es para cualquiera. Todos deberíamos saber cómo
+             defendernos, y la práctica se adapta a cada persona.</p>
+        </article>
+        <article class="ficha">
+          <h3>¿En cuánto tiempo voy a notar progreso?</h3>
+          <p>Depende de cada alumno. Entrenando unas cuatro horas semanales,
+             suele notarse confianza a los dos o tres meses.</p>
+        </article>
+      </div>
+
+      <p style="margin-top:3rem">
+        <a class="boton" href="contacto.html">Escribinos y probá una clase</a>
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="contenedor">
+    <div class="pie__fila">
+      <div>
+        <a class="marca" href="index.html">
+        <picture>
+          <source srcset="assets/img/marca/emblema-128.webp" type="image/webp">
+          <img src="assets/img/marca/emblema-128.png" alt="" width="46" height="46">
+        </picture>
+        <span class="marca__texto">Seiren Kenpo<span>清蓮拳法</span></span>
+      </a>
+        <p style="color:var(--humo);max-width:30ch;margin-top:1rem">
+          Practicar, enseñar, transmitir.<br>Mendoza · Salta · Buenos Aires.
+        </p>
+      </div>
+
+      <div>
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="escuela.html">La Escuela</a></li>
+          <li><a href="estilo.html">El Estilo</a></li>
+          <li><a href="conduccion.html">Conducción</a></li>
+          <li><a href="sedes.html">Sedes</a></li>
+          <li><a href="galeria.html">Galería</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Sedes</h4>
+        <ul>
+          <li><a href="sedes.html#mendoza">Mendoza</a></li>
+          <li><a href="sedes.html#salta">Salta</a></li>
+          <li><a href="sedes.html#buenos-aires">Buenos Aires</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Seguinos</h4>
+        <div class="redes">
+          <a href="https://www.facebook.com/seirenkenpo" target="_blank" rel="noopener noreferrer" aria-label="Seiren Kenpo en Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><title>Facebook</title><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a>
+          <a href="https://www.instagram.com/seirenkenpo/" target="_blank" rel="noopener noreferrer" aria-label="Seiren Kenpo en Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><title>Instagram</title><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069ZM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pie__legal">
+      <p style="margin:0">© <span data-anio>2026</span> Seiren Kenpo. Todos los derechos reservados.</p>
+      <p style="margin:0">Diseño y desarrollo: Manchino, Matías P — DevMapachino</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/seiren.js" defer></script>
+</body>
+</html>
