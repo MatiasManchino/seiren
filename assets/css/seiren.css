@@ -1,23 +1,14 @@
-/* =====================================================================
-   SEIREN KENPO — hoja de estilos
-   ---------------------------------------------------------------------
-   Sistema de diseño construido sobre el manual de marca:
-     rojo sangre #B31F24 (Pantone 186 C) · negro · blanco · Montserrat
+/*-------------------------------SEIREN KENPO------------------------------------------*/
+/* rojo #B31F24 · negro · blanco · Montserrat (manual de marca) */
 
-   Criterio: el rojo se usa como bisturí, no como fondo. Las secciones
-   alternan negro tinta y papel claro, y ese contraste es la estructura.
-   El motivo gráfico es el trazo de pincel del ensō que ya vive en el
-   emblema, no la fotografía.
-   ===================================================================== */
-
-/* ---------- Tokens ---------- */
+/*--------------TOKENS----------------------*/
 :root {
-  /* Marca */
+  /*marca*/
   --rojo:        #B31F24;
   --rojo-hondo:  #7E1418;
   --rojo-tenue:  rgba(179, 31, 36, 0.12);
 
-  /* Neutros con leve sesgo frío, para que el rojo cante */
+  /*neutros*/
   --tinta:       #0B0B0C;
   --tinta-suave: #16161A;
   --tinta-borde: #26262C;
@@ -26,11 +17,11 @@
   --papel-hondo: #E8E4DE;
   --papel-borde: #D4CFC7;
 
-  /* Tipografía */
+  /*tipografia*/
   --display: "Montserrat", "Segoe UI", Helvetica, Arial, sans-serif;
   --texto:   "Source Serif 4", Georgia, "Times New Roman", serif;
 
-  /* Escala tipográfica */
+  /*escala de letras*/
   --t-xs:   0.8125rem;
   --t-sm:   0.9375rem;
   --t-base: 1.0625rem;
@@ -39,17 +30,14 @@
   --t-2xl:  clamp(1.75rem, 3.2vw, 2.5rem);
   --t-3xl:  clamp(2.25rem, 5.5vw, 4rem);
 
-  /* Ritmo.
-     El margen lateral es un token aparte y se aplica como PADDING, no
-     restandolo del ancho: asi el texto nunca toca el borde de la pantalla
-     aunque el contenedor deje de estar centrado. */
+  /*el margen lateral va como padding, no restando del ancho*/
   --margen:  clamp(1.25rem, 4vw, 2.5rem);
   --ancho:   72rem;
   --angosto: 42rem;
   --aire:    clamp(4rem, 9vw, 8rem);
 }
 
-/* ---------- Base ---------- */
+/*--------------BASE----------------------*/
 *, *::before, *::after { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
@@ -66,16 +54,14 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* height:auto no es decorativo: sin el, el atributo height="..." del HTML
-   queda como alto fijo en px, la imagen se deforma y aspect-ratio deja de
-   tener efecto porque ya no hay ninguna dimension en auto. */
+/*sin height:auto las fotos se deforman con el height del html*/
 img, picture, svg { max-width: 100%; height: auto; display: block; }
 
 a { color: inherit; }
 
 ::selection { background: var(--rojo); color: #fff; }
 
-/* Foco visible en todo el sitio. Se define una vez y no se toca. */
+/*foco visible*/
 :focus-visible {
   outline: 3px solid var(--rojo);
   outline-offset: 3px;
@@ -83,16 +69,16 @@ a { color: inherit; }
 }
 .seccion--papel :focus-visible { outline-color: var(--rojo-hondo); }
 
-/* ---------- Utilidades ---------- */
+/*--------------UTILIDADES----------------------*/
 .contenedor {
   width: 100%;
   max-width: calc(var(--ancho) + var(--margen) * 2);
   margin-inline: auto;
   padding-inline: var(--margen);
 }
-/* Modificador: la misma caja, mas angosta. Conserva el margen lateral. */
+/*mas angosto*/
 .contenedor.angosto { max-width: calc(var(--angosto) + var(--margen) * 2); }
-/* Si va anidado dentro de un contenedor, el margen ya lo puso el padre. */
+/*adentro de otro contenedor el margen ya lo pone el padre*/
 .contenedor .angosto { max-width: var(--angosto); padding-inline: 0; }
 
 .solo-lectores {
@@ -111,7 +97,7 @@ a { color: inherit; }
 }
 .saltar:focus { left: 0; }
 
-/* ---------- Tipografía ---------- */
+/*--------------TIPOGRAFÍA----------------------*/
 h1, h2, h3, h4 {
   font-family: var(--display);
   font-weight: 700;
@@ -127,8 +113,7 @@ h3 { font-size: var(--t-xl); }
 p { margin: 0 0 1.2em; }
 p:last-child { margin-bottom: 0; }
 
-/* El "antetítulo": etiqueta corta en versalitas sobre cada sección.
-   Es la voz institucional de la marca, tomada del manual. */
+/*antetitulo*/
 .antetitulo {
   font-family: var(--display);
   font-size: var(--t-xs);
@@ -157,7 +142,7 @@ p:last-child { margin-bottom: 0; }
 }
 .seccion--papel .bajada { color: #55525C; }
 
-/* Kanji decorativo, marca de agua del estilo */
+/*kanji de fondo*/
 .kanji {
   font-size: clamp(5rem, 16vw, 13rem);
   line-height: 1;
@@ -167,13 +152,16 @@ p:last-child { margin-bottom: 0; }
   user-select: none;
   pointer-events: none;
   font-family: "Noto Serif JP", var(--texto);
+  font-weight: 700;
 }
 
-/* ---------- Secciones ---------- */
+/*--------------SECCIONES----------------------*/
 .seccion {
   padding-block: var(--aire);
   position: relative;
+  /*OJO: clip y no hidden, con hidden deja de andar el sticky*/
   overflow: hidden;
+  overflow: clip;
 }
 .seccion--papel {
   background: var(--papel);
@@ -182,7 +170,19 @@ p:last-child { margin-bottom: 0; }
 .seccion--papel .antetitulo { color: var(--rojo-hondo); }
 .seccion--borde { border-top: 1px solid var(--tinta-borde); }
 
-/* ---------- Botones ---------- */
+/*--------------PORTADILLA----------------------*/
+/*encabezado de las paginas interiores, todas del mismo alto*/
+.portadilla {
+  /*alto fijo en rem, con vh contacto quedaba mas alta que las otras*/
+  min-height: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.portadilla .kanji { right: -1%; top: 14%; }
+@media (min-width: 48rem) { .portadilla { min-height: 35rem; } }
+
+/*--------------BOTONES----------------------*/
 .boton {
   display: inline-flex;
   align-items: center;
@@ -214,7 +214,7 @@ p:last-child { margin-bottom: 0; }
   color: #fff;
 }
 
-/* ---------- Cabecera y navegación ---------- */
+/*--------------CABECERA Y NAVEGACIÓN----------------------*/
 .cabecera {
   position: sticky;
   top: 0;
@@ -278,8 +278,7 @@ p:last-child { margin-bottom: 0; }
   border-bottom-color: var(--rojo);
 }
 
-/* Botón del menú en móvil. Tres líneas que giran hasta formar una X.
-   El tamaño visual es 44x44, así que no hace falta ampliar el área táctil. */
+/*boton hamburguesa*/
 .menu-boton {
   display: none;
   width: 44px; height: 44px;
@@ -303,44 +302,36 @@ p:last-child { margin-bottom: 0; }
 .menu-boton[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .menu-boton[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-/* ---------- Portada ---------- */
+/*--------------PORTADA----------------------*/
 .portada {
   position: relative;
   display: grid;
-  align-items: center;
+  align-items: start;           /*arriba, como en las interiores*/
   min-height: min(82vh, 760px);
-  padding-block: clamp(3rem, 8vw, 6rem);
+  padding-block: var(--aire);   /*mismo relleno que .seccion*/
   overflow: hidden;
   background:
     radial-gradient(ellipse 70% 90% at 78% 45%, rgba(179,31,36,0.16), transparent 62%),
     linear-gradient(160deg, #101014 0%, var(--tinta) 55%, #08080A 100%);
 }
-/* Fondo fotografico de la portada.
-   Va como <img> y no como background-image para poder servir avif y webp:
-   el mismo ahorro que en el resto de las fotos. El velo encima es lo que
-   garantiza el contraste del texto, no la suerte de la imagen. */
+/*foto de fondo como img para poder usar avif/webp*/
 .portada__fondo {
   position: absolute;
-  /* Sobresale arriba y abajo: la deriva la corre unos treinta pixeles y sin
-     ese margen quedaria una franja vacia en un borde. */
+  /*sobra arriba y abajo por la deriva*/
   inset: -7% 0;
   z-index: 0;
   pointer-events: none;
 }
 .portada__fondo img {
-  /* En pantalla ancha la imagen se ajusta al ANCHO, no al alto. Si llenara
-     el alto, se agrandaria tanto que el loto y la silueta caerian debajo
-     del parrafo. Ajustada al ancho, la mitad izquierda de la imagen (que es
-     negra) queda bajo el texto y todo lo que importa, a la derecha. */
+  /*pantalla ancha: ajusta al ancho asi el loto no queda abajo del texto*/
   position: absolute;
   right: 0;
   top: 50%;
   width: 100%;
-  min-width: 68rem;          /* en tablet no se achica de mas: se corta a la izquierda */
+  min-width: 68rem;          /*tablet*/
   height: auto;
   transform: translateY(-50%);
-  /* Arriba y abajo se funde con el negro de la portada: sin esto se veria
-     el borde recto donde el humo toca el limite de la foto. */
+  /*fundido con el negro arriba y abajo*/
   -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 16%, #000 84%, transparent 100%);
           mask-image: linear-gradient(180deg, transparent 0, #000 16%, #000 84%, transparent 100%);
 }
@@ -357,9 +348,7 @@ p:last-child { margin-bottom: 0; }
       rgba(11, 11, 12, 0.10) 100%),
     linear-gradient(0deg, var(--tinta) 0%, rgba(11, 11, 12, 0) 30%);
 }
-/* Entre telefono y escritorio la foto no alcanza a correrse del todo a la
-   derecha: el velo lateral se estira para que el final del parrafo siga
-   cayendo sobre oscuro. */
+/*velo mas largo en tablet*/
 @media (min-width: 48.01rem) and (max-width: 75rem) {
   .portada__velo {
     background:
@@ -373,8 +362,7 @@ p:last-child { margin-bottom: 0; }
   }
 }
 
-/* En pantalla angosta el texto ocupa todo el ancho, asi que el velo deja de
-   ser lateral y pasa a ser vertical. */
+/*celu: el velo pasa a vertical*/
 @media (max-width: 48rem) {
   .portada__velo {
     background:
@@ -384,9 +372,7 @@ p:last-child { margin-bottom: 0; }
         rgba(11, 11, 12, 0.35) 78%,
         var(--tinta) 100%);
   }
-  /* En telefono vuelve a llenar la portada entera: la version chica es la
-     mitad derecha de la imagen, y 清蓮拳法 quedan detras del texto como una
-     marca de agua, oscurecidos por el velo. */
+  /*celu: foto entera (version chica)*/
   .portada__fondo img {
     top: 0;
     width: 100%;
@@ -409,7 +395,7 @@ p:last-child { margin-bottom: 0; }
   opacity: 0.5;
   pointer-events: none;
 }
-/* Con foto de fondo el degradado rojo sobra: lo tapa la imagen. */
+/*con foto no hace falta el degradado*/
 .portada--foto { background: var(--tinta); }
 
 .portada__cuerpo { position: relative; z-index: 1; max-width: 46rem; }
@@ -425,7 +411,7 @@ p:last-child { margin-bottom: 0; }
   margin-top: 2.2rem;
 }
 
-/* ---------- Rejillas ---------- */
+/*--------------REJILLAS----------------------*/
 .rejilla {
   display: grid;
   gap: clamp(1.5rem, 3vw, 2.5rem);
@@ -433,7 +419,7 @@ p:last-child { margin-bottom: 0; }
 .rejilla--2 { grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); }
 .rejilla--3 { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
 
-/* ---------- Ficha (conducción, sedes) ---------- */
+/*--------------FICHA (CONDUCCIÓN, SEDES)----------------------*/
 .ficha {
   border: 1px solid var(--tinta-borde);
   padding: 2rem;
@@ -463,7 +449,7 @@ p:last-child { margin-bottom: 0; }
 }
 .seccion--papel .ficha__rol { color: #6A6771; }
 
-/* ---------- Línea de tiempo del linaje ---------- */
+/*--------------LÍNEA DE TIEMPO DEL LINAJE----------------------*/
 .linea-tiempo {
   list-style: none;
   margin: 0;
@@ -507,36 +493,7 @@ p:last-child { margin-bottom: 0; }
 }
 .hito h3 { font-size: var(--t-lg); margin-bottom: 0.3em; }
 
-/* ---------- Galería ---------- */
-.galeria {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-  gap: 0.75rem;
-}
-.galeria a {
-  display: block;
-  position: relative;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  background: var(--tinta-suave);
-}
-.galeria img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  filter: grayscale(1) contrast(1.06);
-  transition: filter 320ms ease, transform 420ms ease;
-}
-.galeria a:hover img,
-.galeria a:focus-visible img {
-  filter: grayscale(0) contrast(1);
-  transform: scale(1.04);
-}
-@media (prefers-reduced-motion: reduce) {
-  .galeria img { transition: none; }
-  .galeria a:hover img { transform: none; }
-}
-
-/* ---------- Cita ---------- */
+/*--------------CITA----------------------*/
 .cita {
   border-left: 3px solid var(--rojo);
   padding-left: clamp(1.25rem, 3vw, 2rem);
@@ -558,7 +515,7 @@ p:last-child { margin-bottom: 0; }
 }
 .seccion--papel .cita cite { color: #6A6771; }
 
-/* ---------- Pie ---------- */
+/*--------------PIE----------------------*/
 .pie {
   background: #070708;
   border-top: 1px solid var(--tinta-borde);
@@ -607,19 +564,10 @@ p:last-child { margin-bottom: 0; }
   font-size: var(--t-xs);
 }
 
-/* =====================================================================
-   MOVIMIENTO
-   ---------------------------------------------------------------------
-   Tres reglas que no se negocian:
-   1. Todo arranca VISIBLE. Lo que oculta es la clase .js, que pone el
-      propio script: si el JavaScript no corre, no se esconde nada.
-   2. Nada se mueve solo. Cada desplazamiento esta atado al scroll o a
-      una entrada en pantalla, asi que el usuario siempre lo controla
-      (WCAG 2.2.2: no hay contenido en movimiento que haya que pausar).
-   3. prefers-reduced-motion apaga todo de una sola vez, al final.
-   ===================================================================== */
+/*-------------------------------MOVIMIENTO------------------------------------------*/
+/*todo arranca visible (lo esconde .js), nada se mueve solo, reduced-motion apaga todo al final*/
 
-/* ---------- Revelado al entrar en pantalla ---------- */
+/*--------------REVELADO AL ENTRAR EN PANTALLA----------------------*/
 .js .revela {
   opacity: 0;
   transform: translateY(22px);
@@ -632,19 +580,12 @@ p:last-child { margin-bottom: 0; }
 }
 .js .revela.visible { opacity: 1; transform: none; }
 
-/* Variantes: de donde entra cada cosa. Sirven para que una fila de
-   elementos no entre toda igual y el ojo tenga por donde recorrerla. */
+/*variantes de entrada*/
 .js .revela--izq    { transform: translateX(-32px); }
 .js .revela--der    { transform: translateX(32px); }
 .js .revela--escala { transform: scale(0.94); }
 
-/* Cortina: la imagen se descubre de izquierda a derecha, como un trazo.
-   No mueve la foto, la va dejando ver.
-
-   El recorte va en el marco de adentro, nunca en el elemento que observa
-   el IntersectionObserver: un elemento recortado a cero ancho tiene area
-   de interseccion cero, no "entra" nunca en pantalla y se queda invisible
-   para siempre. Costo de aprender esto: una tarde. */
+/*cortina. OJO: el clip va en el marco de adentro, si va en el que mira el observer nunca aparece*/
 .js .revela--cortina { opacity: 1; transform: none; }
 .js .revela--cortina .retrato__marco {
   clip-path: inset(0 100% 0 0);
@@ -653,17 +594,14 @@ p:last-child { margin-bottom: 0; }
 }
 .js .revela--cortina.visible .retrato__marco { clip-path: inset(0 0 0 0); }
 
-/* ---------- Deriva (paralaje) ----------
-   El JS escribe --desliz con un valor en px segun el scroll. Se aplica
-   solo a elementos decorativos: si el calculo falla, no se mueve nada
-   y no se rompe ninguna lectura. */
+/*--------------DERIVA (paralaje)----------------------*/
+/*el js escribe --desliz segun el scroll, solo en cosas decorativas*/
 .deriva { transform: translate3d(0, var(--desliz, 0px), 0); will-change: transform; }
 .portada__enso.deriva {
   transform: translateY(-50%) translate3d(0, var(--desliz, 0px), 0) rotate(var(--giro, 0deg));
 }
 
-/* ---------- Entrada de la portada ----------
-   Una sola vez, al cargar. El texto sube escalonado y el enso crece. */
+/*--------------ENTRADA DE LA PORTADA----------------------*/
 .js .portada h1,
 .js .portada .antetitulo,
 .js .portada .bajada,
@@ -687,13 +625,13 @@ p:last-child { margin-bottom: 0; }
 }
 .js .portada.entrada .portada__enso { opacity: 0.5; }
 
-/* ---------- Cabecera que se compacta ---------- */
+/*--------------CABECERA QUE SE COMPACTA----------------------*/
 .cabecera__fila { transition: min-height 260ms ease; }
 .marca img      { transition: width 260ms ease, height 260ms ease; }
 .cabecera--compacta .cabecera__fila { min-height: 58px; }
 .cabecera--compacta .marca img      { width: 36px; height: 36px; }
 
-/* Barra de avance de lectura, pegada al borde inferior de la cabecera. */
+/*barra de progreso*/
 .cabecera__avance {
   position: absolute;
   left: 0; right: 0; bottom: -1px;
@@ -705,9 +643,8 @@ p:last-child { margin-bottom: 0; }
   pointer-events: none;
 }
 
-/* ---------- Cinta ----------
-   Tira de palabras que se corre en horizontal SEGUN EL SCROLL. No es un
-   marquee automatico: si la pagina esta quieta, la cinta esta quieta. */
+/*--------------CINTA----------------------*/
+/*se mueve con el scroll, si la pagina esta quieta la cinta tambien*/
 .cinta {
   overflow: hidden;
   border-block: 1px solid var(--tinta-borde);
@@ -734,8 +671,7 @@ p:last-child { margin-bottom: 0; }
 }
 .seccion--papel .cinta__pista span { color: var(--papel-borde); }
 
-/* Las palabras van en contorno. Si el navegador no sabe dibujar contorno de
-   texto, se quedan en relleno gris: se leen igual, solo pierden el gesto. */
+/*palabras en contorno (si no hay soporte quedan grises)*/
 @supports (-webkit-text-stroke: 1px red) {
   .cinta__pista span {
     color: transparent;
@@ -744,14 +680,13 @@ p:last-child { margin-bottom: 0; }
   .seccion--papel .cinta__pista span { -webkit-text-stroke-color: var(--papel-borde); }
 }
 
-/* Marcada: la palabra que sí importa, en rojo macizo. La elige quien
-   escribe el contenido, no un nth-child. */
+/*la marcada va en rojo*/
 .cinta__pista span.marcada {
   color: var(--rojo);
   -webkit-text-stroke: 0;
 }
 
-/* Kanji: no van en versalitas ni llevan interletra de titular. */
+/*kanji sin versalitas*/
 .cinta__pista span.jp {
   font-family: "Noto Serif JP", var(--texto);
   text-transform: none;
@@ -759,13 +694,12 @@ p:last-child { margin-bottom: 0; }
   font-weight: 600;
 }
 
-/* Cinta doble: dos pistas que se cruzan en sentidos opuestos. El cruce es
-   lo que se ve; una sola pista parece un cartel, dos parecen movimiento. */
+/*cinta doble, una pista para cada lado*/
 .cinta--doble .cinta__pista + .cinta__pista { margin-top: 0.15em; }
 .cinta--densa .cinta__pista span { font-size: clamp(1rem, 2.6vw, 1.75rem); }
 .cinta--densa .cinta__pista { gap: 1.75rem; }
 
-/* ---------- Un solo interruptor para apagar todo ---------- */
+/*--------------UN SOLO INTERRUPTOR PARA APAGAR TODO----------------------*/
 @media (prefers-reduced-motion: reduce) {
   .js .revela,
   .js .revela--cortina .retrato__marco,
@@ -783,10 +717,8 @@ p:last-child { margin-bottom: 0; }
   .cabecera__fila, .marca img { transition: none; }
 }
 
-/* ---------- Móvil ---------- */
-/* El menu pasa a hamburguesa por debajo de 68rem (1088 px). Con el corte
-   en 62rem, a 1024 px los siete enlaces no entraban en una linea y
-   "La Escuela" y "El Estilo" se partian en dos renglones. */
+/*--------------MÓVIL----------------------*/
+/*hamburguesa debajo de 68rem, a 1024px se partian "La Escuela" y "El Estilo"*/
 @media (max-width: 68rem) {
   .menu-boton { display: block; }
   .nav {
@@ -824,8 +756,7 @@ p:last-child { margin-bottom: 0; }
   .ficha { padding: 1.5rem; }
 }
 
-/* Los enlaces de las listas del pie median 21px de alto: por debajo del
-   minimo de WCAG 2.2 AA (2.5.8) y molestos de tocar en un telefono. */
+/*links del pie mas altos para tocarlos con el dedo*/
 .pie li a {
   display: inline-flex;
   align-items: center;
@@ -837,13 +768,9 @@ p:last-child { margin-bottom: 0; }
   .pie li { margin-bottom: 0; }
 }
 
-/* =====================================================================
-   COMPONENTES EDITORIALES
-   ===================================================================== */
+/*-------------------------------COMPONENTES------------------------------------------*/
 
-/* ---------- Lista numerada ----------
-   Reemplaza a las cajas apiladas. El numeral grande en rojo retoma el
-   motivo "01 / 05" que la escuela ya usa en sus carruseles de redes. */
+/*--------------LISTA NUMERADA----------------------*/
 .numerada { counter-reset: n; margin: 0; padding: 0; list-style: none; }
 
 .numerada > li {
@@ -875,9 +802,7 @@ p:last-child { margin-bottom: 0; }
   .numerada > li { grid-template-columns: 1fr; gap: 0.5rem; }
 }
 
-/* ---------- Árbol de linaje ----------
-   Tronco vertical que se abre en ramas. Es una lista anidada de verdad,
-   así que un lector de pantalla la recorre como la jerarquía que es. */
+/*--------------ARBOL DEL LINAJE----------------------*/
 .arbol, .arbol ul { list-style: none; margin: 0; padding: 0; }
 
 .arbol li { position: relative; }
@@ -889,7 +814,7 @@ p:last-child { margin-bottom: 0; }
   padding-left: 2.5rem;
   padding-bottom: 0.35rem;
 }
-.nodo::before {           /* el punto */
+.nodo::before {           /*punto*/
   content: "";
   position: absolute;
   left: 0; top: 0.55em;
@@ -901,7 +826,7 @@ p:last-child { margin-bottom: 0; }
 }
 .seccion:not(.seccion--papel) .nodo::before { background: var(--tinta); }
 
-.nodo::after {            /* el tronco que baja */
+.nodo::after {            /*tronco*/
   content: "";
   position: absolute;
   left: 6px; top: 1.6em; bottom: -2rem;
@@ -912,7 +837,7 @@ p:last-child { margin-bottom: 0; }
 .arbol > li:last-child > .nodo::after,
 .arbol li:last-child > .nodo:last-child::after { display: none; }
 
-/* El nodo central de la escuela se marca con un punto lleno */
+/*nodo de la escuela con punto lleno*/
 .nodo--eje::before { background: var(--rojo); }
 
 .nodo__rol {
@@ -942,7 +867,7 @@ p:last-child { margin-bottom: 0; }
 }
 .seccion--papel .nodo__sede { color: #6A6771; }
 
-/* Las ramas se indentan y arrancan con una guía horizontal */
+/*ramas*/
 .arbol .ramas {
   margin-left: 2.5rem;
   padding-top: 0.5rem;
@@ -954,7 +879,7 @@ p:last-child { margin-bottom: 0; }
 }
 .arbol .ramas > li > .nodo::after { display: none; }
 
-/* ---------- Dato suelto (dirección, horario) ---------- */
+/*--------------DATO SUELTO (DIRECCIÓN, HORARIO)----------------------*/
 .dato {
   display: block;
   font-family: var(--display);
@@ -972,9 +897,8 @@ p:last-child { margin-bottom: 0; }
   margin-bottom: 0.1rem;
 }
 
-/* ---------- Duo: columna de texto + figura ----------
-   Dos columnas asimetricas. La figura queda pegada mientras el texto
-   sigue subiendo, que es lo que le da movimiento a la lectura larga. */
+/*--------------DUO (texto + foto)----------------------*/
+/*la foto queda fija mientras baja el texto*/
 .duo {
   display: grid;
   gap: clamp(2rem, 5vw, 4rem);
@@ -982,16 +906,16 @@ p:last-child { margin-bottom: 0; }
 }
 @media (min-width: 56rem) {
   .duo { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
-  /* Tronco: al reves, la columna ancha es la de la derecha. */
+  /*tronco: la columna ancha es la derecha*/
   .duo--tronco { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); }
   .duo--invertido .duo__texto { order: 2; }
-  .duo__figura { position: sticky; top: 7rem; }
+  /*OJO: .retrato.duo__figura con las dos clases, si no el position:relative de .retrato le gana*/
+  .duo__figura,
+  .retrato.duo__figura { position: sticky; top: 7rem; }
 }
 .duo__texto { max-width: 46rem; }
 
-/* ---------- Retrato ----------
-   Foto con marco corrido en rojo. El marco se dibuja detras y sobresale:
-   el mismo gesto del sello, sin decorar de mas. */
+/*--------------RETRATO----------------------*/
 .retrato { margin: 0; position: relative; }
 .retrato::before {
   content: "";
@@ -1033,9 +957,7 @@ p:last-child { margin-bottom: 0; }
   margin-bottom: 0.2rem;
 }
 
-/* ---------- Tira de archivo ----------
-   Fila de fotos chicas que entran escalonadas. Sirve de respiro entre
-   dos bloques de texto largo. */
+/*--------------TIRA DE FOTOS----------------------*/
 .tira {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
@@ -1055,11 +977,7 @@ p:last-child { margin-bottom: 0; }
   .retrato:hover img { transform: none; }
 }
 
-/* ---------- Glosario ----------
-   Cada concepto del sistema con su ideograma al costado, en contorno rojo,
-   igual que las palabras de la cinta. Es una lista de definiciones de
-   verdad, sin cajas: el ideograma hace de titular y el borde superior
-   separa una entrada de la siguiente. */
+/*--------------GLOSARIO----------------------*/
 .glosario { list-style: none; margin: 0; padding: 0; }
 
 .glosario > li {
@@ -1080,6 +998,7 @@ p:last-child { margin-bottom: 0; }
 .glosario__jp {
   display: block;
   font-family: "Noto Serif JP", var(--texto);
+  font-weight: 700;
   font-size: clamp(2.75rem, 8vw, 5rem);
   line-height: 0.95;
   color: var(--rojo);
@@ -1100,15 +1019,12 @@ p:last-child { margin-bottom: 0; }
 .glosario h3 { margin-bottom: 0.4em; }
 .glosario p  { max-width: 60ch; }
 
-/* Lista de variantes dentro de una entrada (los tipos de golpe, las tres
-   alturas). Guion rojo en vez de punto: no es una enumeracion suelta, es el
-   despliegue de lo que acaba de nombrarse. */
+/*detalle (tipos de golpe, alturas)*/
 .glosario__detalle {
   list-style: none;
   margin: 1.25rem 0 0;
   padding: 0;
-  max-width: 62ch;   /* la misma medida que los parrafos: si no, el detalle
-                        corre el doble de ancho que el texto que lo explica */
+  max-width: 62ch;   /*mismo ancho que los parrafos*/
 }
 .glosario__detalle li {
   position: relative;
@@ -1133,9 +1049,7 @@ p:last-child { margin-bottom: 0; }
   display: block;
 }
 
-/* ---------- Numerada con ideograma ----------
-   La misma lista de la portada, pero el marcador es el kanji de la virtud
-   en lugar del numeral. Mismo esqueleto, otra voz. */
+/*--------------NUMERADA CON KANJI (bushido)----------------------*/
 .numerada--kanji > li::before {
   content: attr(data-jp);
   font-family: "Noto Serif JP", var(--texto);
@@ -1152,4 +1066,793 @@ p:last-child { margin-bottom: 0; }
   text-transform: uppercase;
   color: var(--rojo);
   margin-bottom: 0.35rem;
+}
+
+/*--------------PLANTEL----------------------*/
+.plantel { list-style: none; margin: 0; padding: 0; }
+
+.plantel > li {
+  display: grid;
+  gap: clamp(0.75rem, 3vw, 2.5rem);
+  padding-block: clamp(2rem, 5vw, 3rem);
+  border-top: 1px solid var(--tinta-borde);
+  align-items: start;
+}
+.seccion--papel .plantel > li { border-top-color: var(--papel-borde); }
+.plantel > li:last-child { border-bottom: 1px solid var(--tinta-borde); }
+.seccion--papel .plantel > li:last-child { border-bottom-color: var(--papel-borde); }
+
+@media (min-width: 52rem) {
+  .plantel > li { grid-template-columns: minmax(9rem, 15rem) 1fr; }
+}
+
+.plantel__jp {
+  display: block;
+  font-family: "Noto Serif JP", var(--texto);
+  font-weight: 700;
+  font-size: clamp(2.75rem, 8vw, 4.5rem);
+  line-height: 0.95;
+  color: var(--rojo);
+}
+/*relleno y no contorno, sobre claro el contorno queda finito*/
+.plantel__dan {
+  display: block;
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--rojo);
+  margin-top: 0.7rem;
+}
+.seccion--papel .plantel__dan { color: var(--rojo-hondo); }
+
+/*una marca por dan, se llena cuando aparece*/
+.plantel__marcas {
+  display: block;
+  height: 12px;
+  margin-top: 0.8rem;
+  width: calc(var(--n) * 14px - 5px);
+  background: repeating-linear-gradient(90deg, var(--rojo) 0 9px, transparent 9px 14px);
+  transition: width 900ms cubic-bezier(0.65, 0, 0.35, 1) 300ms;
+}
+.js .plantel > li:not(.visible) .plantel__marcas { width: 0; }
+
+.plantel__rol {
+  display: block;
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rojo);
+  margin-bottom: 0.4rem;
+}
+.seccion--papel .plantel__rol { color: var(--rojo-hondo); }
+.plantel h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.35em; }
+.plantel p  { max-width: 58ch; }
+.plantel__formacion {
+  font-family: var(--display);
+  font-size: var(--t-sm);
+  color: var(--humo);
+  margin-top: 0.9rem;
+}
+.seccion--papel .plantel__formacion { color: #5E5B66; }
+.plantel__formacion strong { color: inherit; font-weight: 700; }
+.seccion--papel .plantel__formacion strong { color: var(--tinta); }
+
+/*--------------ENLACE CON FLECHA----------------------*/
+.enlace-flecha {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 44px;
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--papel);
+}
+.seccion--papel .enlace-flecha { color: var(--rojo-hondo); }
+.enlace-flecha::after {
+  content: "\2192";
+  color: var(--rojo);
+  transition: transform 200ms ease;
+}
+.seccion--papel .enlace-flecha::after { color: inherit; }
+.enlace-flecha:hover { text-decoration: underline; text-underline-offset: 4px; }
+.enlace-flecha:hover::after { transform: translateX(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .plantel__marcas { transition: none; }
+  .js .plantel > li:not(.visible) .plantel__marcas { width: calc(var(--n) * 14px - 5px); }
+  .enlace-flecha::after { transition: none; }
+}
+
+/*--------------SEDE----------------------*/
+.sede__nombre {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(2.75rem, 8vw, 5.25rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.25em;
+}
+
+.datos { margin: 1.75rem 0 0; }
+.datos > div {
+  display: grid;
+  grid-template-columns: minmax(7.5rem, 10rem) 1fr;
+  gap: 1rem;
+  padding-block: 1rem;
+  border-top: 1px solid var(--tinta-borde);
+}
+.seccion--papel .datos > div { border-top-color: var(--papel-borde); }
+.datos > div:last-child { border-bottom: 1px solid var(--tinta-borde); }
+.seccion--papel .datos > div:last-child { border-bottom-color: var(--papel-borde); }
+.datos dt {
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rojo);
+  padding-top: 0.25em;
+}
+.seccion--papel .datos dt { color: var(--rojo-hondo); }
+.datos dd {
+  margin: 0;
+  font-family: var(--display);
+  font-size: var(--t-base);
+  line-height: 1.55;
+}
+.datos dd .enlace-flecha { min-height: 36px; margin-top: 0.15rem; }
+.datos a:not(.enlace-flecha) {
+  color: inherit;
+  text-decoration-color: var(--rojo);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+.datos a:not(.enlace-flecha):hover { text-decoration-thickness: 2px; }
+/*grado al lado del nombre*/
+.datos .grado {
+  display: inline-block;
+  margin-left: 0.35rem;
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--humo);
+}
+.seccion--papel .datos .grado { color: #5E5B66; }
+/*lo que falta confirmar*/
+.datos .a-consultar { color: var(--humo); }
+.seccion--papel .datos .a-consultar { color: #5E5B66; }
+
+@media (max-width: 34rem) {
+  .datos > div { grid-template-columns: 1fr; gap: 0.3rem; }
+}
+
+/*que la cabecera no tape el titulo al saltar*/
+section[id], li[id] { scroll-margin-top: 5rem; }
+
+/*-------------------------------GALERIA------------------------------------------*/
+
+/*--------------FILTROS----------------------*/
+/*sin js no se muestran*/
+.filtros {
+  display: none;
+  position: sticky;
+  top: 59px;                    /*abajo de la cabecera*/
+  z-index: 20;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-block: 1rem;
+  margin-bottom: clamp(1.75rem, 4vw, 2.75rem);
+  background: var(--papel);
+  border-bottom: 1px solid var(--papel-borde);
+}
+.js .filtros { display: flex; }
+
+.filtro {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 44px;
+  padding: 0.55rem 1rem;
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tinta);
+  background: transparent;
+  border: 1px solid var(--papel-borde);
+  cursor: pointer;
+  scroll-margin-top: 6rem;
+  transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+.filtro:hover { border-color: var(--tinta); }
+.filtro[aria-pressed="true"] {
+  background: var(--tinta);
+  border-color: var(--tinta);
+  color: var(--papel);
+}
+.filtro__n { font-weight: 600; color: var(--rojo-hondo); letter-spacing: 0.04em; }
+
+/*celu: una sola fila que se desliza*/
+@media (max-width: 40rem) {
+  .js .filtros {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-inline: calc(var(--margen) * -1);
+    padding-inline: var(--margen);
+    -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent);
+            mask-image: linear-gradient(90deg, #000 85%, transparent);
+  }
+  .js .filtros::-webkit-scrollbar { display: none; }
+  .filtro { flex: 0 0 auto; }
+}
+.filtro[aria-pressed="true"] .filtro__n { color: rgba(246, 244, 241, 0.6); }
+
+/*--------------MURO----------------------*/
+.muro {
+  columns: 3 17rem;
+  column-gap: clamp(1rem, 2.5vw, 1.75rem);
+}
+.obra {
+  break-inside: avoid;
+  margin: 0 0 clamp(1.75rem, 3.5vw, 2.5rem);
+}
+.obra[hidden] { display: none; }
+
+/*con js pasa a grilla asi se lee 01, 02, 03 (el js calcula las filas)*/
+.muro--grilla {
+  columns: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  grid-auto-rows: 4px;
+  column-gap: clamp(1rem, 2.5vw, 1.75rem);
+  --sep: 40px;
+}
+@media (max-width: 40rem) { .muro--grilla { --sep: 28px; } }
+.muro--grilla .obra {
+  margin: 0;
+  align-self: start;
+  grid-row-end: span var(--filas, 80);
+}
+
+.obra__enlace {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  background: var(--papel-hondo);
+  cursor: zoom-in;
+}
+.obra__enlace img {
+  width: 100%;
+  height: auto;
+  filter: grayscale(1) contrast(1.05);
+  transition: filter 450ms ease, transform 700ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.obra__enlace:hover img,
+.obra__enlace:focus-visible img { filter: none; transform: scale(1.035); }
+
+/*esquina roja en hover*/
+.obra__enlace::after {
+  content: "";
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 30px; height: 30px;
+  border-top: 2px solid var(--rojo);
+  border-right: 2px solid var(--rojo);
+  opacity: 0;
+  transform: translate(-8px, 8px);
+  transition: opacity 250ms ease, transform 300ms ease;
+  pointer-events: none;
+}
+.obra__enlace:hover::after,
+.obra__enlace:focus-visible::after { opacity: 1; transform: none; }
+
+/*epigrafe*/
+.obra__pie {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.8rem;
+  row-gap: 0.2rem;
+  margin-top: 0.8rem;
+}
+.obra__num {
+  grid-row: span 2;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: var(--t-lg);
+  line-height: 1;
+  color: var(--rojo);
+  padding-top: 0.1rem;
+}
+.obra__cat {
+  font-family: var(--display);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #6A6771;
+}
+.obra__txt { font-size: var(--t-sm); line-height: 1.5; color: var(--tinta); }
+.obra__txt:empty { display: none; }
+
+/*entrada al filtrar*/
+.obra.entra {
+  animation: obraEntra 520ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  animation-delay: calc(var(--e, 0) * 55ms);
+}
+@keyframes obraEntra { from { opacity: 0; transform: translateY(16px); } }
+
+/*--------------VISOR----------------------*/
+html.visor-abierto { overflow: hidden; }
+
+.visor {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgba(8, 8, 10, 0.97);
+  color: var(--papel);
+  overflow: hidden;
+}
+.visor::backdrop { background: rgba(0, 0, 0, 0.7); }
+
+.visor__obra {
+  margin: 0;
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(17rem, 25rem);
+}
+
+.visor__imagen {
+  position: relative;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 4rem) clamp(4.5rem, 7vw, 6rem);
+  touch-action: pan-y;
+}
+.visor__imagen img {
+  max-width: 100%;
+  max-height: calc(100dvh - 8rem);
+  width: auto;
+  height: auto;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
+  transition: opacity 260ms ease, transform 380ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+/*cambio de foto*/
+.visor.cambiando .visor__imagen img { opacity: 0; transform: translateX(var(--desde, 0px)); }
+
+.visor__lado {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.1rem;
+  padding: clamp(1.75rem, 3vw, 3rem);
+  background: #0E0E10;
+  border-left: 1px solid var(--tinta-borde);
+}
+.visor__num {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(3rem, 6vw, 4.75rem);
+  line-height: 0.9;
+  color: var(--rojo);
+  letter-spacing: -0.02em;
+}
+.visor__total {
+  font-size: var(--t-lg);
+  font-weight: 600;
+  color: var(--humo);
+  letter-spacing: 0.02em;
+}
+.visor__cat { margin: 0; }
+.visor__txt {
+  margin: 0;
+  font-size: var(--t-lg);
+  line-height: 1.6;
+  color: var(--papel);
+}
+.visor__txt:empty::before { content: "Sin descripci\00f3n."; color: var(--humo); }
+.visor__avance { height: 2px; background: var(--tinta-borde); }
+.visor__avance span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--rojo);
+  transition: width 380ms ease;
+}
+.visor__ayuda {
+  margin: 0;
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  letter-spacing: 0.08em;
+  color: var(--humo);
+}
+.visor__ayuda kbd {
+  font-family: inherit;
+  padding: 0.1rem 0.4rem;
+  border: 1px solid var(--tinta-borde);
+  border-radius: 3px;
+}
+
+.visor__boton {
+  position: absolute;
+  z-index: 2;
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 1.35rem;
+  line-height: 1;
+  color: var(--papel);
+  background: rgba(11, 11, 12, 0.72);
+  border: 1px solid var(--tinta-borde);
+  cursor: pointer;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+.visor__boton:hover { border-color: var(--rojo); background: rgba(179, 31, 36, 0.25); }
+.visor__cerrar { top: 1rem; right: 1rem; }
+.visor__prev { left: 1rem; top: 50%; transform: translateY(-50%); }
+.visor__next { right: 1rem; top: 50%; transform: translateY(-50%); }
+
+/*pantalla angosta*/
+@media (max-width: 56rem) {
+  .visor__obra {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+  .visor__imagen { padding: 4.25rem 0.75rem 0.75rem; }
+  .visor__imagen img { max-height: 58dvh; }
+  .visor__lado {
+    border-left: 0;
+    border-top: 1px solid var(--tinta-borde);
+    padding: 1.25rem 1.25rem calc(1.25rem + 52px + 1rem);
+    gap: 0.6rem;
+  }
+  .visor__num { font-size: 2.5rem; }
+  .visor__txt { font-size: var(--t-base); }
+  .visor__ayuda { display: none; }
+  .visor__prev, .visor__next { position: fixed; top: auto; bottom: 1rem; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .obra__enlace img, .obra__enlace::after,
+  .visor__imagen img, .visor__avance span { transition: none; }
+  .obra.entra { animation: none; }
+  .obra__enlace:hover img { transform: none; }
+}
+
+/*-------------------------------CONTACTO------------------------------------------*/
+/*no hay form con envio: arma el mensaje, lo copia y abre messenger/instagram*/
+
+/*sin js no se muestra*/
+.armador-seccion { display: none; }
+.js .armador-seccion { display: block; }
+
+/*--------------PASOS----------------------*/
+.paso {
+  border: 0;
+  margin: 0 0 clamp(2rem, 4vw, 2.75rem);
+  padding: 0;
+  min-width: 0;
+}
+.paso legend {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  padding: 0;
+  margin-bottom: 1rem;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: var(--t-lg);
+  line-height: 1.3;
+}
+.paso__num {
+  font-size: var(--t-xs);
+  letter-spacing: 0.2em;
+  color: var(--rojo-hondo);
+}
+.paso__opcional {
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6A6771;
+}
+
+/*--------------OPCIONES----------------------*/
+/*el input queda invisible pero se usa con teclado*/
+.opcion { position: relative; display: block; cursor: pointer; }
+.opcion input {
+  position: absolute;
+  opacity: 0;
+  width: 1px; height: 1px;
+  margin: 0;
+}
+.opcion[id] { scroll-margin-top: 8rem; }
+
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));   /*2x2*/
+  gap: 0.6rem;
+}
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-height: 5.25rem;
+  padding: 0.95rem 1.1rem;
+  background: #fff;
+  border: 1px solid var(--papel-borde);
+  position: relative;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.tarjeta strong {
+  font-family: var(--display);
+  font-size: var(--t-lg);
+  font-weight: 700;
+  line-height: 1.2;
+}
+.tarjeta small {
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  letter-spacing: 0.04em;
+  color: #5E5B66;
+}
+.opcion:hover .tarjeta { border-color: var(--tinta); }
+.opcion input:checked + .tarjeta {
+  border-color: var(--tinta);
+  box-shadow: inset 0 0 0 1px var(--tinta);
+}
+/*marca de elegida*/
+.opcion input:checked + .tarjeta::after {
+  content: "";
+  position: absolute;
+  top: 8px; right: 8px;
+  width: 16px; height: 16px;
+  border-top: 2px solid var(--rojo);
+  border-right: 2px solid var(--rojo);
+}
+.opcion input:focus-visible + .tarjeta,
+.opcion input:focus-visible + .ficha-opcion {
+  outline: 3px solid var(--rojo-hondo);
+  outline-offset: 3px;
+}
+
+.fichas { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.ficha-opcion {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.55rem 1rem;
+  font-family: var(--display);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  background: #fff;
+  border: 1px solid var(--papel-borde);
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+.ficha-opcion::before {
+  content: "+";
+  font-weight: 700;
+  color: var(--rojo-hondo);
+  width: 0.8em;
+  text-align: center;
+}
+.opcion:hover .ficha-opcion { border-color: var(--tinta); }
+.opcion input:checked + .ficha-opcion {
+  background: var(--tinta);
+  border-color: var(--tinta);
+  color: var(--papel);
+}
+.opcion input:checked + .ficha-opcion::before { content: "\2713"; color: #fff; }
+
+/*aviso segun la sede*/
+.aviso-sede {
+  margin: 0.9rem 0 0;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--rojo);
+  background: #fff;
+  font-family: var(--display);
+  font-size: var(--t-sm);
+  line-height: 1.5;
+}
+.aviso-sede[hidden] { display: none; }
+
+/*--------------CAMPOS DE TEXTO----------------------*/
+.campo { display: block; margin-bottom: 1.25rem; }
+.campo__nombre {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rojo-hondo);
+}
+.campo input,
+.campo textarea {
+  width: 100%;
+  font: inherit;
+  font-size: var(--t-base);
+  color: var(--tinta);
+  background: #fff;
+  border: 1px solid var(--papel-borde);
+  padding: 0.8rem 0.95rem;
+  min-height: 48px;
+  border-radius: 0;
+}
+.campo textarea { min-height: 6rem; resize: vertical; }
+.campo input:focus,
+.campo textarea:focus { outline: 3px solid var(--rojo-hondo); outline-offset: 2px; border-color: var(--tinta); }
+
+/*--------------CHAT----------------------*/
+.chat {
+  background: var(--tinta);
+  color: var(--papel);
+  border: 1px solid var(--tinta);
+}
+.chat__cabeza {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid var(--tinta-borde);
+}
+.chat__cabeza img { width: 40px; height: 40px; border-radius: 50%; background: #fff; }
+.chat__para {
+  font-family: var(--display);
+  font-size: var(--t-sm);
+  font-weight: 700;
+  line-height: 1.25;
+}
+.chat__para small {
+  display: block;
+  font-weight: 500;
+  font-size: var(--t-xs);
+  letter-spacing: 0.06em;
+  color: var(--humo);
+}
+.chat__cuerpo {
+  padding: 1.5rem 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+  min-height: 12rem;
+  background:
+    radial-gradient(ellipse 80% 60% at 100% 0%, rgba(179, 31, 36, 0.12), transparent 70%),
+    var(--tinta);
+}
+.burbuja {
+  max-width: 92%;
+  margin: 0;
+  padding: 0.95rem 1.15rem;
+  background: var(--rojo);
+  color: #fff;
+  border-radius: 18px 18px 4px 18px;
+  font-size: var(--t-base);
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.chat__hora {
+  font-family: var(--display);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--humo);
+}
+
+/*--------------ACCIONES----------------------*/
+.acciones {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+.acciones .boton { width: 100%; }
+/*con Salta queda un solo boton*/
+.acciones__canales { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); }
+.acciones__canales .boton { padding-inline: 1rem; }
+.acciones__canales .boton[hidden] { display: none; }
+.boton--oscuro {
+  background: transparent;
+  color: var(--tinta);
+  border-color: var(--tinta);
+}
+.boton--oscuro:hover { background: var(--tinta); color: var(--papel); }
+.estado {
+  min-height: 1.5em;
+  margin: 0.2rem 0 0;
+  font-family: var(--display);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--rojo-hondo);
+}
+/*latido despues de copiar*/
+.boton.siguiente { animation: latido 900ms ease 2; }
+@keyframes latido {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(179, 31, 36, 0); }
+  50%      { box-shadow: 0 0 0 6px rgba(179, 31, 36, 0.25); }
+}
+.privacidad {
+  margin: 0.8rem 0 0;
+  font-size: var(--t-xs);
+  line-height: 1.5;
+  color: #5E5B66;
+}
+
+/*--------------CANALES----------------------*/
+.canales { list-style: none; margin: 0; padding: 0; }
+.canales > li { border-top: 1px solid var(--tinta-borde); }
+.canales > li:last-child { border-bottom: 1px solid var(--tinta-borde); }
+.canal {
+  display: grid;
+  grid-template-columns: minmax(9rem, 15rem) 1fr auto;
+  align-items: center;
+  gap: 0.5rem clamp(1rem, 3vw, 2.5rem);
+  padding: clamp(1.4rem, 3vw, 2rem) 0.25rem;
+  text-decoration: none;
+  color: inherit;
+  transition: background 200ms ease, padding 200ms ease;
+}
+a.canal:hover { background: var(--tinta-suave); padding-inline: 1rem; }
+.canal__nombre {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  transition: color 200ms ease;
+}
+a.canal:hover .canal__nombre { color: var(--rojo); }
+.canal__detalle { font-size: var(--t-base); line-height: 1.5; color: var(--papel); }
+.canal__detalle small {
+  display: block;
+  font-family: var(--display);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rojo);
+  margin-bottom: 0.2rem;
+}
+.canal__flecha {
+  font-family: var(--display);
+  font-size: 1.6rem;
+  color: var(--rojo);
+  transition: transform 200ms ease;
+}
+a.canal:hover .canal__flecha { transform: translateX(6px); }
+.canal--pendiente .canal__nombre,
+.canal--pendiente .canal__detalle { color: var(--humo); }
+
+@media (max-width: 40rem) {
+  .canal { grid-template-columns: 1fr auto; }
+  .canal__detalle { grid-column: 1 / -1; grid-row: 2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boton.siguiente { animation: none; }
+  .canal, .canal__nombre, .canal__flecha, .tarjeta, .ficha-opcion { transition: none; }
 }

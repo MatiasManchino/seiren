@@ -1,15 +1,6 @@
-/* =====================================================================
-   SEIREN KENPO — comportamiento
-   Sin dependencias. Todo lo que hace es opcional: si este archivo no
-   carga, el sitio se lee y se navega igual.
-
-   El movimiento sigue tres reglas:
-     · Todo arranca visible. Lo que oculta es la clase .js, que pone
-       este mismo script.
-     · Nada se mueve solo: cada desplazamiento esta atado al scroll o a
-       una entrada en pantalla. No hay animacion que haya que pausar.
-     · Si el sistema pide menos movimiento, no se engancha nada.
-   ===================================================================== */
+//--------------SEIREN KENPO---------------
+// sin dependencias, si no carga el sitio se ve igual
+// todo arranca visible y nada se mueve solo (solo con el scroll)
 (function () {
   'use strict';
 
@@ -19,7 +10,7 @@
   var quieto = window.matchMedia &&
                window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Menu en movil ---------- */
+  //--------------MENU MOBILE---------------
   var boton = document.querySelector('.menu-boton');
   var nav   = document.getElementById('nav-principal');
 
@@ -47,21 +38,15 @@
     });
 
     window.addEventListener('resize', function () {
-      if (window.innerWidth > 1088) pintarMenu(false);   // mismo corte que el CSS: 68rem
+      if (window.innerWidth > 1088) pintarMenu(false);   // mismo corte que el css (68rem)
     }, { passive: true });
   }
 
-  /* ---------- Revelado al entrar en pantalla ----------
-     IntersectionObserver en vez de escuchar el scroll: el navegador
-     avisa cuando corresponde y no hay que recalcular el layout en
-     cada fotograma. */
+  //--------------REVELADO---------------
   var aRevelar = document.querySelectorAll('.revela');
 
-  // Escalonado: los hijos directos de un [data-escalonar] entran uno
-  // detras del otro. El retardo lo lee el CSS de la variable --r.
-  // El valor del atributo dice cada cuantos vuelve a cero, para que una
-  // grilla larga no termine con un elemento esperando tres segundos:
-  // asi cada fila arranca de nuevo y el barrido queda en diagonal.
+  // escalonado: los hijos de [data-escalonar] entran de a uno (--r en el css)
+  // el numero del atributo es cada cuantos vuelve a cero
   Array.prototype.forEach.call(
     document.querySelectorAll('[data-escalonar]'),
     function (madre) {
@@ -90,8 +75,7 @@
     }
   }
 
-  /* ---------- Entrada de la portada ----------
-     Una sola vez, al cargar, para que la pagina no aparezca de golpe. */
+  //--------------ENTRADA PORTADA---------------
   var portada = document.querySelector('.portada');
   if (portada) {
     requestAnimationFrame(function () {
@@ -99,11 +83,8 @@
     });
   }
 
-  /* =================================================================
-     Lo atado al scroll: cabecera, barra de avance, deriva y cintas.
-     Un solo listener y un solo rAF para las cuatro cosas: escuchar el
-     scroll cuatro veces por separado es lo que hace saltar el scroll.
-     ================================================================= */
+  //--------------SCROLL: cabecera, barra, deriva y cintas---------------
+  // un solo listener y un rAF para todo
   if (quieto) return;
 
   var cabecera = document.querySelector('.cabecera');
@@ -125,8 +106,7 @@
           return {
             el: pista,
             sobra: Math.max(0, pista.scrollWidth - c.clientWidth),
-            // Una pista marcada como inversa arranca corrida y vuelve a cero,
-            // asi las dos se cruzan en sentidos opuestos.
+            // la inversa arranca corrida, asi se cruzan
             inversa: pista.getAttribute('data-sentido') === 'inverso'
           };
         }
@@ -145,7 +125,7 @@
       avance.style.setProperty('--avance', recorrido > 0 ? Math.min(1, y / recorrido) : 0);
     }
 
-    // Deriva: cuanto mas lejos del centro de la pantalla, mas se corre.
+    // deriva: mas lejos del centro, mas se mueve
     derivas.forEach(function (el) {
       var caja = el.getBoundingClientRect();
       var factor = parseFloat(el.getAttribute('data-deriva')) || 0.12;
@@ -156,7 +136,7 @@
       }
     });
 
-    // Cinta: se corre en horizontal mientras cruza la pantalla.
+    // cinta
     cintas.forEach(function (c) {
       if (!c._pistas || !c._pistas.length) return;
       var caja = c.getBoundingClientRect();
@@ -182,11 +162,10 @@
   window.addEventListener('resize', function () { medir(); alScrollear(); }, { passive: true });
   window.addEventListener('load', function () { medir(); pintar(); });
 
-  /* ---------- Año del pie ---------- */
+  //--------------AÑO DEL PIE---------------
 })();
 
-/* El año del pie va aparte: tiene que correr aunque el bloque de
-   movimiento haya cortado temprano por prefers-reduced-motion. */
+// va aparte porque tiene que andar aunque reduced-motion corte antes
 (function () {
   var anio = document.querySelector('[data-anio]');
   if (anio) anio.textContent = new Date().getFullYear();

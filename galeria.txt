@@ -1,0 +1,49 @@
+# GALERÍA DE SEIREN KENPO
+#
+# Una foto por línea, en el orden en que se muestran:
+#
+#     archivo | categoría | descripción
+#
+# · archivo:     el nombre de la foto, sin la extensión (está en assets/img/fotos/)
+# · categoría:   arma los filtros de arriba de la galería
+# · descripción: el texto que aparece debajo de la foto y al costado cuando
+#                se abre en grande. Puede quedar vacía.
+#
+# Las líneas que empiezan con # no se leen.
+#
+# PARA CAMBIAR UNA DESCRIPCIÓN: editá el texto y guardá. La página lo lee
+# cada vez que se abre, así que el cambio aparece solo, sin regenerar nada
+# (en GitHub tarda lo que tarde en publicarse, un par de minutos).
+#
+# PARA AGREGAR, SACAR O REORDENAR FOTOS, o cambiar una categoría: eso sí
+# necesita regenerar el sitio. Ver LEEME-SITIO.md.
+
+mend3     | Mendoza               | Trabajo de piernas en grupo, sobre tatami.
+mend4     | Mendoza               | Trabajo en parejas: guardia y distancia.
+mend6     | Mendoza               | Dos practicantes en guardia, midiendo la distancia.
+mend7     | Mendoza               | Defensa alta con los dos brazos.
+mend8     | Mendoza               | La clase trabaja en parejas.
+mend9     | Mendoza               | Golpe a la zona alta, trabajado en pareja.
+mend10    | Mendoza               | Control del brazo y golpe a corta distancia.
+mend11    | Mendoza               | Patada a la zona media.
+mend12    | Mendoza               | Defensa con el antebrazo ante un golpe a la cabeza.
+mend14    | Mendoza               | Posición baja: la base firme que pide el estilo.
+baires22  | Buenos Aires          | Parte del grupo de la sede de Buenos Aires.
+baires23  | Buenos Aires          | Desvío con la mano abierta desde una posición adelantada.
+archi36   | Archivo               | Golpe recto y esquive con el cuerpo.
+archi39   | Archivo               | Patada alta, bloqueada con los brazos.
+archi46   | Archivo               | Patada y defensa con los antebrazos.
+archi51   | Archivo               | Patada a la zona media y defensa con las manos.
+archi40   | Archivo               | Patada alta por encima de un compañero que esquiva agachado.
+archi41   | Archivo               | Control del brazo y entrada a corta distancia.
+archi43   | Archivo               | Rodilla arriba, lista para patear, frente a una guardia que retrocede.
+archi47   | Archivo               | Patada lateral alta mientras el compañero esquiva por abajo.
+archi49   | Archivo               | Proyección: el compañero pierde el equilibrio hacia atrás.
+archi50   | Archivo               | Patada a la zona media, frenada con la mano.
+archi54   | Archivo               | Momento de una entrega en el dojo.
+archi56   | Archivo               | Entrenamiento al aire libre, con los cerros de fondo.
+archi57   | Archivo               | Patada alta en un entrenamiento al aire libre.
+miyazawa1 | Gran Maestro Miyazawa | El Gran Maestro Kenzo Miyazawa en una demostración.
+miyazawa2 | Gran Maestro Miyazawa | El Gran Maestro Kenzo Miyazawa al frente de una clase; los alumnos repiten la técnica detrás de él.
+miyazawa3 | Gran Maestro Miyazawa | El Gran Maestro Kenzo Miyazawa en posición baja, con la guardia arriba.
+miyazawa4 | Gran Maestro Miyazawa | Retrato del Gran Maestro Kenzo Miyazawa en guardia.

@@ -1,9 +1,7 @@
-# Lo que Cloudflare NO publica. Sin esta lista sube la carpeta entera,
-# incluido el historial de git (.git). Misma sintaxis que .gitignore.
+# no subir a cloudflare
 .git
 .gitignore
 .assetsignore
-.gstack
 .wrangler
 wrangler.jsonc
 node_modules
