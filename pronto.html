@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seiren Kenpo | Muy pronto</title>
+  <meta name="description" content="Escuela de Kenpo en Mendoza, Salta y Buenos Aires. El sitio está por salir; mientras tanto escribinos por Facebook o Instagram.">
+  <meta name="author" content="Matias P Manchino (DevMapachino)">
+  <meta name="theme-color" content="#0B0B0C">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Seiren Kenpo | Muy pronto">
+  <meta property="og:description" content="Escuela de Kenpo en Mendoza, Salta y Buenos Aires.">
+  <meta property="og:image" content="https://www.seirenkenpo.com.ar/assets/img/marca/og-portada.jpg">
+  <meta property="og:locale" content="es_AR">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/marca/favicon-32.png">
+  <link rel="apple-touch-icon" href="/assets/img/marca/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap">
+
+  <style>
+    /*-------------------------------MUY PRONTO------------------------------------------*/
+    /*cartel mientras se termina el sitio. lo muestra worker.js en los dominios propios*/
+    :root {
+      --rojo: #B31F24;
+      --rojo-letra: #C4262B; /*un toque mas vivo para que se lea sobre negro*/
+      --tinta: #0B0B0C;
+      --papel: #F6F4F1;
+      --humo: #9A9AA2;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: var(--tinta);
+      color: var(--papel);
+      font-family: "Montserrat", "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+
+    /*--------------FONDO----------------------*/
+    .fondo, .velo { position: fixed; inset: 0; }
+    .fondo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: right center;
+    }
+    /*oscuro a la izquierda para el logo, la foto se ve a la derecha*/
+    .velo {
+      background:
+        linear-gradient(90deg, var(--tinta) 0%, rgba(11,11,12,.92) 30%, rgba(11,11,12,.35) 60%, rgba(11,11,12,0) 80%),
+        linear-gradient(0deg, rgba(11,11,12,.8) 0%, rgba(11,11,12,0) 30%);
+    }
+
+    /*--------------CARTEL----------------------*/
+    .cartel {
+      position: relative;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: clamp(1.5rem, 4vh, 2.5rem);
+      padding: clamp(2rem, 6vh, 4rem) clamp(1.25rem, 8vw, 9rem);
+    }
+    .logo { width: clamp(15rem, 30vw, 26rem); height: auto; display: block; }
+    h1 {
+      margin: 0;
+      font-weight: 700;
+      font-size: clamp(2.2rem, 5.2vw, 4.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+    }
+    h1 span { display: block; color: var(--rojo-letra); }
+    .raya { width: 4rem; height: 3px; background: var(--rojo); border: 0; margin: 0; }
+    .redes { margin: 0; font-size: 0.95rem; font-weight: 500; line-height: 1.6; color: var(--humo); }
+    .redes a {
+      color: var(--papel);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rojo);
+      padding-bottom: 1px;
+    }
+    .redes a:hover { color: var(--rojo); }
+    .redes a:focus-visible { outline: 3px solid var(--rojo); outline-offset: 3px; }
+
+    /*tablet: el logo un poco mas chico asi no se pisa con la silueta*/
+    @media (max-aspect-ratio: 3/2) and (min-width: 48.01rem) {
+      .logo { width: clamp(13rem, 24vw, 20rem); }
+      h1 { font-size: clamp(2rem, 4.4vw, 3.4rem); }
+    }
+
+    /*--------------CELU----------------------*/
+    /*la foto abajo, el logo y el texto arriba sobre negro*/
+    @media (max-width: 48rem) {
+      .fondo { top: 46%; }
+      .fondo img { object-position: center top; }
+      .velo { background: linear-gradient(180deg, var(--tinta) 46%, rgba(11,11,12,.55) 60%, rgba(11,11,12,.1) 78%, rgba(11,11,12,.6) 100%); }
+      .cartel { justify-content: flex-start; align-items: center; text-align: center; padding-top: 9vh; }
+      .logo { width: min(64vw, 18rem); }
+    }
+  </style>
+</head>
+<body>
+  <picture class="fondo" aria-hidden="true">
+    <source media="(max-width: 48rem)" srcset="/assets/img/graf/portada-chica.avif" type="image/avif">
+    <source media="(max-width: 48rem)" srcset="/assets/img/graf/portada-chica.webp" type="image/webp">
+    <source srcset="/assets/img/graf/portada.avif" type="image/avif">
+    <source srcset="/assets/img/graf/portada.webp" type="image/webp">
+    <img src="/assets/img/graf/portada.jpg" alt="" width="1900" height="791" fetchpriority="high">
+  </picture>
+  <div class="velo" aria-hidden="true"></div>
+
+  <main class="cartel">
+    <picture>
+      <source srcset="/assets/img/marca/emblema-800.avif" type="image/avif">
+      <source srcset="/assets/img/marca/emblema-800.webp" type="image/webp">
+      <img class="logo" src="/assets/img/marca/emblema-800.png" alt="Seiren Kenpo" width="800" height="800">
+    </picture>
+    <h1>Muy pronto <span>disponible</span></h1>
+    <hr class="raya">
+    <p class="redes">
+      Mientras tanto, escribinos por
+      <a href="https://www.facebook.com/seirenkenpo" target="_blank" rel="noopener noreferrer">Facebook</a>
+      o <a href="https://www.instagram.com/seirenkenpo/" target="_blank" rel="noopener noreferrer">Instagram</a>.
+    </p>
+  </main>
+</body>
+</html>

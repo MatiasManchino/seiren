@@ -1,13 +1,17 @@
 // config de cloudflare (name = nombre del worker)
+// worker.js decide que se muestra en cada dominio; /assets/* va directo sin pasar por el worker
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "seirenkenpo",
+  "main": "worker.js",
   "compatibility_date": "2026-09-21",
   "observability": {
     "enabled": true
   },
   "assets": {
     "directory": ".",
-    "not_found_handling": "404-page"
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/*", "!/assets/*"]
   }
 }
