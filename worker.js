@@ -1,17 +1,13 @@
 //--------------WORKER---------------
 // www.seirenkenpo.com.ar es el unico dominio para google: los otros redirigen ahi (301)
 // mientras PRONTO: solo existe "/" con el cartel, lo demas va a "/" (302)
-// workers.dev es el sitio de revision: sin indexar y solo con la llave del link
+// workers.dev es el sitio de revision: se ve completo pero google no lo indexa
 // para lanzar el sitio: PRONTO = false y subir
 
 const PRONTO = true;
 
 const CANONICO = 'www.seirenkenpo.com.ar';
 const ALIAS = ['seirenkenpo.com.ar', 'seirenkenpo.com', 'www.seirenkenpo.com'];
-
-// llave de workers.dev: se entra una vez con ?llave=... y queda una cookie por 60 dias
-// aca va solo el sha-256, la llave no esta en el repo (esta en LEEME-SITIO.md, que no se sube)
-const LLAVE_SHA256 = '019961f1235d9bd21092d0db0418419f0ed2925dbfb81f2a9b5f36f21bccd6a6';
 
 // las mismas de _headers (las respuestas que pasan por aca no siempre las llevan)
 const CABECERAS = {
@@ -26,16 +22,6 @@ const NO_INDEXAR = 'noindex, nofollow, noarchive';
 
 // mientras PRONTO el sitemap anuncia solo el inicio
 const SITEMAP_PRONTO = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://' + CANONICO + '/</loc>\n  </url>\n</urlset>\n';
-
-async function sha256(t) {
-  const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));
-  return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join('');
-}
-
-function galleta(request, nombre) {
-  const m = (request.headers.get('Cookie') || '').match(new RegExp('(?:^|;\\s*)' + nombre + '=([^;]*)'));
-  return m ? decodeURIComponent(m[1]) : '';
-}
 
 export default {
   async fetch(request, env) {
@@ -55,27 +41,15 @@ export default {
           headers: { 'Content-Type': 'text/plain; charset=utf-8', 'X-Robots-Tag': NO_INDEXAR },
         });
       }
-      // entrada con la llave: queda la cookie y se saca la llave de la direccion
-      if (url.searchParams.has('llave')) {
-        const llave = url.searchParams.get('llave');
-        url.searchParams.delete('llave');
-        const h = new Headers({ Location: url.pathname + url.search, 'Cache-Control': 'no-store', 'X-Robots-Tag': NO_INDEXAR });
-        if ((await sha256(llave)) === LLAVE_SHA256) {
-          h.append('Set-Cookie', 'llave=' + encodeURIComponent(llave) + '; Max-Age=5184000; Path=/; Secure; HttpOnly; SameSite=Lax');
-        }
-        return new Response(null, { status: 302, headers: h });
-      }
     }
 
     // una pagina es lo que no tiene extension (o termina en .html)
     const esPagina = !/\.[a-z0-9]+$/i.test(url.pathname.replace(/\.html$/i, ''));
-    const adentro = revision && (await sha256(galleta(request, 'llave'))) === LLAVE_SHA256;
     const cartel = () => env.ASSETS.fetch(new Request(new URL('/pronto', url), request));
 
     let res;
     if (revision) {
-      if (adentro) res = await env.ASSETS.fetch(request);
-      else res = esPagina ? await cartel() : await env.ASSETS.fetch(new Request(new URL('/no-existe', url), request));
+      res = await env.ASSETS.fetch(request);
     } else if (PRONTO) {
       if (url.pathname === '/sitemap.xml') {
         return new Response(SITEMAP_PRONTO, { headers: { 'Content-Type': 'application/xml; charset=utf-8' } });
@@ -90,10 +64,7 @@ export default {
     for (const [k, v] of Object.entries(CABECERAS)) {
       if (!res.headers.has(k)) res.headers.set(k, v);
     }
-    if (revision) {
-      res.headers.set('X-Robots-Tag', NO_INDEXAR);
-      res.headers.set('Cache-Control', 'no-store');
-    }
+    if (revision) res.headers.set('X-Robots-Tag', NO_INDEXAR);
     return res;
   },
 };
