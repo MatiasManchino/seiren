@@ -1592,9 +1592,14 @@ html.visor-abierto { overflow: hidden; }
 
 .tarjetas {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));   /*2x2*/
+  grid-template-columns: 1fr;   /*celu: una abajo de la otra*/
   gap: 0.6rem;
 }
+@media (min-width: 30rem) {
+  .tarjetas { grid-template-columns: repeat(3, minmax(0, 1fr)); }   /*3 sedes, una al lado de la otra*/
+}
+.tarjetas > .opcion { display: flex; }   /*las 3 del mismo alto aunque una tenga 2 renglones*/
+.tarjetas .tarjeta { flex: 1 1 auto; }
 .tarjeta {
   display: flex;
   flex-direction: column;

@@ -2,37 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.seirenkenpo.com.ar/</loc>
-    <lastmod>2026-09-22</lastmod>
-    <priority>1.0</priority>
+    <lastmod>2026-09-26</lastmod>
   </url>
   <url>
-    <loc>https://www.seirenkenpo.com.ar/escuela.html</loc>
-    <lastmod>2026-09-22</lastmod>
-    <priority>0.9</priority>
+    <loc>https://www.seirenkenpo.com.ar/escuela</loc>
+    <lastmod>2026-09-26</lastmod>
   </url>
   <url>
-    <loc>https://www.seirenkenpo.com.ar/estilo.html</loc>
-    <lastmod>2026-09-22</lastmod>
-    <priority>0.9</priority>
+    <loc>https://www.seirenkenpo.com.ar/estilo</loc>
+    <lastmod>2026-09-26</lastmod>
   </url>
   <url>
-    <loc>https://www.seirenkenpo.com.ar/conduccion.html</loc>
-    <lastmod>2026-09-22</lastmod>
-    <priority>0.8</priority>
+    <loc>https://www.seirenkenpo.com.ar/conduccion</loc>
+    <lastmod>2026-09-26</lastmod>
   </url>
   <url>
-    <loc>https://www.seirenkenpo.com.ar/sedes.html</loc>
-    <lastmod>2026-09-22</lastmod>
-    <priority>0.9</priority>
+    <loc>https://www.seirenkenpo.com.ar/sedes</loc>
+    <lastmod>2026-09-26</lastmod>
   </url>
   <url>
-    <loc>https://www.seirenkenpo.com.ar/galeria.html</loc>
-    <lastmod>2026-09-22</lastmod>
-    <priority>0.7</priority>
+    <loc>https://www.seirenkenpo.com.ar/galeria</loc>
+    <lastmod>2026-09-26</lastmod>
   </url>
   <url>
-    <loc>https://www.seirenkenpo.com.ar/contacto.html</loc>
-    <lastmod>2026-09-22</lastmod>
-    <priority>0.8</priority>
+    <loc>https://www.seirenkenpo.com.ar/contacto</loc>
+    <lastmod>2026-09-26</lastmod>
   </url>
 </urlset>

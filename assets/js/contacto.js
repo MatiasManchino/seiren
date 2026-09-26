@@ -21,8 +21,7 @@
   var SEDES = {
     'mendoza':      'Me gustaría entrenar en la sede de Mendoza.',
     'salta':        'Me gustaría entrenar en la sede de Salta.',
-    'buenos-aires': 'Me gustaría entrenar en la sede de Buenos Aires.',
-    'no-se':        'Todavía no sé qué sede me queda más cerca.'
+    'buenos-aires': 'Me gustaría entrenar en la sede de Buenos Aires.'
   };
   // en este orden van en la frase, "probar" al final
   var CONSULTAS = [

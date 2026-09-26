@@ -3,22 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Seiren Kenpo | Muy pronto</title>
-  <meta name="description" content="Escuela de Kenpo en Mendoza, Salta y Buenos Aires. El sitio está por salir; mientras tanto escribinos por Facebook o Instagram.">
+  <title>Seiren Kenpo | Escuela de Kenpo en Mendoza, Salta y Buenos Aires</title>
+  <meta name="description" content="Escuela de Kenpo y defensa personal en Mendoza (Godoy Cruz), Salta y Buenos Aires. El sitio nuevo sale muy pronto; escribinos por Facebook o Instagram.">
+  <link rel="canonical" href="https://www.seirenkenpo.com.ar/">
+  <meta name="robots" content="index, follow">
   <meta name="author" content="Matias P Manchino (DevMapachino)">
   <meta name="theme-color" content="#0B0B0C">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Seiren Kenpo | Muy pronto">
-  <meta property="og:description" content="Escuela de Kenpo en Mendoza, Salta y Buenos Aires.">
-  <meta property="og:image" content="https://www.seirenkenpo.com.ar/assets/img/marca/og-portada.jpg">
+  <meta property="og:site_name" content="Seiren Kenpo">
   <meta property="og:locale" content="es_AR">
+  <meta property="og:url" content="https://www.seirenkenpo.com.ar/">
+  <meta property="og:title" content="Seiren Kenpo | Escuela de Kenpo en Mendoza, Salta y Buenos Aires">
+  <meta property="og:description" content="Escuela de Kenpo y defensa personal. El sitio nuevo sale muy pronto.">
+  <meta property="og:image" content="https://www.seirenkenpo.com.ar/assets/img/marca/og-portada.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/marca/favicon-32.png">
   <link rel="apple-touch-icon" href="/assets/img/marca/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsOrganization",
+  "name": "Seiren Kenpo",
+  "alternateName": "清蓮拳法",
+  "description": "Escuela de artes marciales dedicada a la práctica, la enseñanza y la formación. Defensa personal y formación progresiva en Mendoza, Salta y Buenos Aires.",
+  "url": "https://www.seirenkenpo.com.ar/",
+  "logo": "https://www.seirenkenpo.com.ar/assets/img/marca/emblema-512.png",
+  "image": "https://www.seirenkenpo.com.ar/assets/img/marca/og-portada.jpg",
+  "sport": "Artes marciales",
+  "areaServed": {
+    "@type": "Country",
+    "name": "Argentina"
+  },
+  "memberOf": {
+    "@type": "Organization",
+    "name": "Unión Americana de Kenpo (UAK)"
+  },
+  "location": [
+    {
+      "@type": "SportsActivityLocation",
+      "name": "Seiren Kenpo, sede Mendoza",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Gutiérrez 935",
+        "addressLocality": "Godoy Cruz",
+        "addressRegion": "Mendoza",
+        "addressCountry": "AR"
+      }
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/seirenkenpo",
+    "https://www.instagram.com/seirenkenpo/"
+  ]
+}
+  </script>
 
   <style>
     /*-------------------------------MUY PRONTO------------------------------------------*/
@@ -68,15 +114,24 @@
     }
     /*el logo y el titulo se achican tambien con el alto (vh): asi entra todo sin scroll
       aunque la pantalla sea bajita (notebook con windows al 125%)*/
+    h1 { margin: 0; }
     .logo { width: clamp(9rem, min(30vw, 44vh), 26rem); height: auto; display: block; }
-    h1 {
+    .ante {
+      margin: 0 0 calc(-1 * clamp(0.5rem, 2vh, 1.5rem));
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rojo-letra);
+    }
+    .titular {
       margin: 0;
       font-weight: 700;
       font-size: clamp(1.9rem, min(5.2vw, 8.5vh), 4.4rem);
       line-height: 1.05;
       letter-spacing: -0.01em;
     }
-    h1 span { display: block; color: var(--rojo-letra); }
+    .titular span { display: block; color: var(--rojo-letra); }
     .raya { width: 4rem; height: 3px; background: var(--rojo); border: 0; margin: 0; }
     .redes { margin: 0; font-size: 0.95rem; font-weight: 500; line-height: 1.6; color: var(--humo); }
     .redes a {
@@ -91,7 +146,7 @@
     /*tablet: el logo un poco mas chico asi no se pisa con la silueta*/
     @media (max-aspect-ratio: 3/2) and (min-width: 48.01rem) {
       .logo { width: clamp(9rem, min(24vw, 40vh), 20rem); }
-      h1 { font-size: clamp(1.8rem, min(4.4vw, 7.5vh), 3.4rem); }
+      .titular { font-size: clamp(1.8rem, min(4.4vw, 7.5vh), 3.4rem); }
     }
 
     /*--------------CELU----------------------*/
@@ -109,7 +164,10 @@
         padding: 6vh 1.25rem 0.5rem;
       }
       .logo { width: min(60vw, 32vh, 18rem); }
-      h1 { font-size: clamp(1.8rem, 8.5vw, 2.4rem); }
+      .titular { font-size: clamp(1.8rem, 8.5vw, 2.4rem); }
+      .ante { font-size: 0.7rem; letter-spacing: 0.16em; line-height: 1.7; }
+      .ante span { display: block; }
+      .ante .sep { display: none; }   /*en el celu va en dos renglones*/
       .redes { font-size: 0.9rem; }
       .fondo { order: 2; position: relative; inset: auto; flex: 1 1 auto; min-height: 24vh; }
       .fondo img {
@@ -133,12 +191,15 @@
   <div class="velo" aria-hidden="true"></div>
 
   <main class="cartel">
-    <picture>
-      <source srcset="/assets/img/marca/emblema-800.avif" type="image/avif">
-      <source srcset="/assets/img/marca/emblema-800.webp" type="image/webp">
-      <img class="logo" src="/assets/img/marca/emblema-800.png" alt="Seiren Kenpo" width="800" height="800">
-    </picture>
-    <h1>Muy pronto <span>disponible</span></h1>
+    <h1>
+      <picture>
+        <source srcset="/assets/img/marca/emblema-800.avif" type="image/avif">
+        <source srcset="/assets/img/marca/emblema-800.webp" type="image/webp">
+        <img class="logo" src="/assets/img/marca/emblema-800.png" alt="Seiren Kenpo" width="800" height="800">
+      </picture>
+    </h1>
+    <p class="ante"><span>Escuela de Kenpo</span><span class="sep"> · </span><span>Mendoza · Salta · Buenos Aires</span></p>
+    <p class="titular">Muy pronto <span>disponible</span></p>
     <hr class="raya">
     <p class="redes">
       Mientras tanto, escribinos por

@@ -20,7 +20,7 @@
 
   <title>Contacto | Seiren Kenpo</title>
   <meta name="description" content="Escribile a Seiren Kenpo por Messenger o Instagram. Elegí la sede y lo que querés saber, y la página te arma el primer mensaje.">
-  <link rel="canonical" href="https://www.seirenkenpo.com.ar/contacto.html">
+  <link rel="canonical" href="https://www.seirenkenpo.com.ar/contacto">
 
   <meta name="author" content="Matias P Manchino (DevMapachino)">
   <meta name="robots" content="index, follow">
@@ -29,7 +29,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Seiren Kenpo">
   <meta property="og:locale" content="es_AR">
-  <meta property="og:url" content="https://www.seirenkenpo.com.ar/contacto.html">
+  <meta property="og:url" content="https://www.seirenkenpo.com.ar/contacto">
   <meta property="og:title" content="Contacto | Seiren Kenpo">
   <meta property="og:description" content="Escribile a Seiren Kenpo por Messenger o Instagram. Elegí la sede y lo que querés saber, y la página te arma el primer mensaje.">
   <meta property="og:image" content="https://www.seirenkenpo.com.ar/assets/img/marca/og-portada.jpg">
@@ -68,7 +68,7 @@
   },
   "location": [
     {
-      "@type": "Place",
+      "@type": "SportsActivityLocation",
       "name": "Seiren Kenpo, sede Mendoza",
       "address": {
         "@type": "PostalAddress",
@@ -92,7 +92,7 @@
 
 <header class="cabecera">
   <div class="contenedor cabecera__fila">
-    <a class="marca" href="index.html">
+    <a class="marca" href="./">
         <picture>
           <source srcset="assets/img/marca/emblema-128.webp" type="image/webp">
           <img src="assets/img/marca/emblema-128.png" alt="" width="46" height="46">
@@ -106,13 +106,13 @@
     </button>
 
     <nav class="nav" id="nav-principal" aria-label="Navegación principal">
-      <a href="index.html">Inicio</a>
-      <a href="escuela.html">La Escuela</a>
-      <a href="estilo.html">El Estilo</a>
-      <a href="conduccion.html">Conducción</a>
-      <a href="sedes.html">Sedes</a>
-      <a href="galeria.html">Galería</a>
-      <a href="contacto.html" aria-current="page">Contacto</a>
+      <a href="./">Inicio</a>
+      <a href="escuela">La Escuela</a>
+      <a href="estilo">El Estilo</a>
+      <a href="conduccion">Conducción</a>
+      <a href="sedes">Sedes</a>
+      <a href="galeria">Galería</a>
+      <a href="contacto" aria-current="page">Contacto</a>
     </nav>
   </div>
   <div class="cabecera__avance" aria-hidden="true"></div>
@@ -157,8 +157,6 @@
                 <span class="tarjeta"><strong>Salta</strong><small>Tiene su propia página</small></span></label>
               <label class="opcion" id="sede-buenos-aires"><input type="radio" name="sede" value="buenos-aires">
                 <span class="tarjeta"><strong>Buenos Aires</strong><small>Horarios a consultar</small></span></label>
-              <label class="opcion" id="sede-no-se"><input type="radio" name="sede" value="no-se">
-                <span class="tarjeta"><strong>Todavía no sé</strong><small>Te orientamos</small></span></label>
             </div>
             <p class="aviso-sede" data-aviso-sede="mendoza" hidden>
               Dato: en Mendoza se entrena martes y jueves a las 20:25, en
@@ -271,8 +269,8 @@
         Lo que casi todos preguntan antes de la primera clase ya está respondido.
       </p>
       <p class="revela" style="margin-top:2.25rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-        <a class="boton" href="estilo.html#primera-clase">Preguntas de la primera clase</a>
-        <a class="boton boton--linea" href="sedes.html">Ver las sedes</a>
+        <a class="boton" href="estilo#primera-clase">Preguntas de la primera clase</a>
+        <a class="boton boton--linea" href="sedes">Ver las sedes</a>
       </p>
     </div>
   </section>
@@ -282,7 +280,7 @@
   <div class="contenedor">
     <div class="pie__fila">
       <div>
-        <a class="marca" href="index.html">
+        <a class="marca" href="./">
         <picture>
           <source srcset="assets/img/marca/emblema-128.webp" type="image/webp">
           <img src="assets/img/marca/emblema-128.png" alt="" width="46" height="46">
@@ -297,21 +295,21 @@
       <div>
         <h4>Navegación</h4>
         <ul>
-          <li><a href="escuela.html">La Escuela</a></li>
-          <li><a href="estilo.html">El Estilo</a></li>
-          <li><a href="conduccion.html">Conducción</a></li>
-          <li><a href="sedes.html">Sedes</a></li>
-          <li><a href="galeria.html">Galería</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="escuela">La Escuela</a></li>
+          <li><a href="estilo">El Estilo</a></li>
+          <li><a href="conduccion">Conducción</a></li>
+          <li><a href="sedes">Sedes</a></li>
+          <li><a href="galeria">Galería</a></li>
+          <li><a href="contacto">Contacto</a></li>
         </ul>
       </div>
 
       <div>
         <h4>Sedes</h4>
         <ul>
-          <li><a href="sedes.html#mendoza">Mendoza</a></li>
-          <li><a href="sedes.html#salta">Salta</a></li>
-          <li><a href="sedes.html#buenos-aires">Buenos Aires</a></li>
+          <li><a href="sedes#mendoza">Mendoza</a></li>
+          <li><a href="sedes#salta">Salta</a></li>
+          <li><a href="sedes#buenos-aires">Buenos Aires</a></li>
         </ul>
       </div>
 
