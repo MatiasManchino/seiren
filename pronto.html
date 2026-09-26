@@ -63,14 +63,16 @@
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
-      gap: clamp(1.5rem, 4vh, 2.5rem);
-      padding: clamp(2rem, 6vh, 4rem) clamp(1.25rem, 8vw, 9rem);
+      gap: clamp(1rem, 3.5vh, 2.5rem);
+      padding: clamp(1.25rem, 5vh, 4rem) clamp(1.25rem, 8vw, 9rem);
     }
-    .logo { width: clamp(15rem, 30vw, 26rem); height: auto; display: block; }
+    /*el logo y el titulo se achican tambien con el alto (vh): asi entra todo sin scroll
+      aunque la pantalla sea bajita (notebook con windows al 125%)*/
+    .logo { width: clamp(9rem, min(30vw, 44vh), 26rem); height: auto; display: block; }
     h1 {
       margin: 0;
       font-weight: 700;
-      font-size: clamp(2.2rem, 5.2vw, 4.4rem);
+      font-size: clamp(1.9rem, min(5.2vw, 8.5vh), 4.4rem);
       line-height: 1.05;
       letter-spacing: -0.01em;
     }
@@ -88,18 +90,35 @@
 
     /*tablet: el logo un poco mas chico asi no se pisa con la silueta*/
     @media (max-aspect-ratio: 3/2) and (min-width: 48.01rem) {
-      .logo { width: clamp(13rem, 24vw, 20rem); }
-      h1 { font-size: clamp(2rem, 4.4vw, 3.4rem); }
+      .logo { width: clamp(9rem, min(24vw, 40vh), 20rem); }
+      h1 { font-size: clamp(1.8rem, min(4.4vw, 7.5vh), 3.4rem); }
     }
 
     /*--------------CELU----------------------*/
-    /*la foto abajo, el logo y el texto arriba sobre negro*/
+    /*el logo y el texto arriba sobre negro, la foto usa lo que sobra abajo (nunca queda atras del texto)*/
     @media (max-width: 48rem) {
-      .fondo { top: 46%; }
-      .fondo img { object-position: center top; }
-      .velo { background: linear-gradient(180deg, var(--tinta) 46%, rgba(11,11,12,.55) 60%, rgba(11,11,12,.1) 78%, rgba(11,11,12,.6) 100%); }
-      .cartel { justify-content: flex-start; align-items: center; text-align: center; padding-top: 9vh; }
-      .logo { width: min(64vw, 18rem); }
+      body { display: flex; flex-direction: column; height: auto; min-height: 100vh; min-height: 100dvh; }
+      .velo { display: none; }
+      .cartel {
+        order: 1;
+        min-height: 0;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: center;
+        gap: clamp(0.9rem, 2.8vh, 1.5rem);
+        padding: 6vh 1.25rem 0.5rem;
+      }
+      .logo { width: min(60vw, 32vh, 18rem); }
+      h1 { font-size: clamp(1.8rem, 8.5vw, 2.4rem); }
+      .redes { font-size: 0.9rem; }
+      .fondo { order: 2; position: relative; inset: auto; flex: 1 1 auto; min-height: 24vh; }
+      .fondo img {
+        position: absolute;
+        inset: 0;
+        object-position: center 75%;
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 40%);
+        mask-image: linear-gradient(to bottom, transparent 0%, #000 40%);
+      }
     }
   </style>
 </head>
