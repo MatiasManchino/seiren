@@ -170,3 +170,14 @@
   var anio = document.querySelector('[data-anio]');
   if (anio) anio.textContent = new Date().getFullYear();
 })();
+
+//--------------BOTON FLOTANTE---------------
+// se cierra al tocar afuera o con escape (sin js igual abre y cierra)
+(function () {
+  var f = document.querySelector('.flotante');
+  if (!f) return;
+  document.addEventListener('click', function (e) { if (f.open && !f.contains(e.target)) f.open = false; });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && f.open) { f.open = false; f.querySelector('summary').focus(); }
+  });
+})();
