@@ -181,3 +181,26 @@
     if (e.key === 'Escape' && f.open) { f.open = false; f.querySelector('summary').focus(); }
   });
 })();
+
+//--------------HUMO DE INCIENSO---------------
+// video al costado de la portada y de las cabeceras
+// se baja y corre solo si se ve (en celu esta oculto); con reduced-motion queda la foto fija
+(function () {
+  var videos = document.querySelectorAll('video.humo');
+  if (!videos.length || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var mirar = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (e) {
+      var v = e.target;
+      if (e.isIntersecting) {
+        v.preload = 'auto';
+        var p = v.play();
+        if (p && p.catch) p.catch(function () {});
+      } else {
+        v.pause();
+      }
+    });
+  });
+  Array.prototype.forEach.call(videos, function (v) { mirar.observe(v); });
+})();
