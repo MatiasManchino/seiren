@@ -87,6 +87,9 @@ a { color: inherit; }
   clip-path: inset(50%); white-space: nowrap; border: 0;
 }
 
+/*cruz de fallecido al lado del nombre*/
+.fallecido { margin-left: 0.25em; font-weight: 400; white-space: nowrap; }
+
 .saltar {
   position: absolute; left: -9999px; top: 0; z-index: 200;
   background: var(--rojo); color: #fff;
