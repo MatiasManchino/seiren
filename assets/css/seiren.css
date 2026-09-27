@@ -1939,3 +1939,66 @@ a.canal:hover .canal__flecha { transform: translateX(6px); }
   .flotante summary span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 }
 @media (prefers-reduced-motion: reduce) { .flotante summary { transition: none; } }
+
+/*--------------VOCES (frases de la conduccion)----------------------*/
+/*en sus palabras: dos frases grandes, sacadas de sus entrevistas*/
+.voces { background: var(--tinta-suave); border-block: 1px solid var(--tinta-borde); }
+.voces__fila {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(22rem, 100%), 1fr));
+  gap: clamp(2.5rem, 6vw, 5rem);
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+.voz { margin: 0; position: relative; padding-top: 2.2rem; }
+.voz::before {
+  content: "\201C";
+  position: absolute; top: -0.6rem; left: -0.1rem;
+  font-family: var(--texto);
+  font-size: 5rem; line-height: 1;
+  color: var(--rojo);
+}
+.voz p {
+  margin: 0;
+  font-family: var(--texto);
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+  line-height: 1.45;
+  color: var(--papel);
+}
+.voz cite {
+  display: block;
+  margin-top: 1.25rem;
+  font-family: var(--display);
+  font-style: normal;
+  font-size: var(--t-sm);
+  font-weight: 700;
+  color: var(--papel);
+}
+.voz cite span {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rojo);
+}
+
+/*frase corta dentro de un texto (el estilo, conduccion, preguntas)*/
+.dicho {
+  margin: 1rem 0 0;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--rojo);
+  font-style: italic;
+}
+.dicho cite {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: var(--display);
+  font-style: normal;
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--humo);
+}
+.seccion--papel .dicho cite, .ficha .dicho cite { color: #6A6771; }
